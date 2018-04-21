@@ -1,0 +1,92 @@
+---
+title: Port Wine Data
+author: Alan Ryan
+date: '2017-07-03'
+slug: port-wine-data
+categories: ["R"]
+tags: ["R Markdown", "Port Wine Data", "Highcharter", "DT datatable"]
+---
+The Douro is a Portuguese wine region located on the banks of the river of the same name. It is situated far upstream from the city of Porto. The region has Portugal's highest wine classification --- *Denominação de Origem Controlada* (DOC).  
+Port wine is produced from grapes grown and processed in this demarcated region. The wine is fortified by the addition of a neutral grape spirit known as *aguardente*. This stops the fermentation process and results in Port's high sugar and alcohol levels.  Much of the wine is still aged in wooden barrels and often stored in the Port wine cellars of Vila Nova de Gaia.  
+
+While the region is associated primarily with Port wine production, the Douro produces as much regular wine as fortified. The non-fortified are typically referred to as Douro wines. The region also produces Moscotel and sparkling wines.  
+
+The Douro DOC has three sub-regions: **Lower Corgo**, **Upper Corgo**, and **Upper Douro**:  
+
+**Lower Corgo** -- Is centered around Peso da Régua, downstream from the river Corgo. It is the wettest and on average coolest zone. It mainly produces the grapes for the cheaper Ruby and Twny ports.  
+**Upper Corgo** -- Is centered around Pinhão. The summertime average temperature of this region is a few degrees higher, and annual rainfall is less. The grapes grown in this zone are considered higher quality, and are used for Vintage, Reserve, aged Tawny and LBV ports.  
+**Upper Douro** -- The easternmost zone, extending almost to the Spanish border. This is the least cultivated, most arid and warmest region of the Douro.  
+The [**IVDP**](www.ivdp.pt) (Wine Institute for the Douro and Porto) divides port into two categories: normal (standard ruby and 3-year-old tawny, white and rosé) and special categories, which include all other ports. 
+
+```{r eval=TRUE, echo=FALSE, message = FALSE, warning=FALSE, fig.cap="The Douro region"}
+library(tidyverse)
+library(leaflet)
+towns <-tibble(
+          lng = c(-7.789185, -7.404620, -7.533062, -8.610706, -8.606487),
+          lat = c(41.164329,  41.146975, 41.189297, 41.149990, 41.129403)
+  )
+map<- leaflet() %>% setView(lng = -7.789185, lat = 41.164329, zoom =9) 
+          map %>% 
+          addProviderTiles(providers$CartoDB.Positron, options = providerTileOptions(noWrap = TRUE)) %>% 
+          addMarkers(data = towns, ~lng, ~lat)
+```
+
+## The differnt types of port wine: 
+  **Ruby**: standard Ruby port labeled as “Ruby”, “Fine Ruby” or “Port”. The label refers to the year it was bottled. These Rubies are often aged in stainless steel vats for as little as 2 or 3 years before bottling.  
+**Tawny**: standard Tawny, sometimes labeled “Fine Tawny”. It is without an indication of age but must be at least 3 years old before bottling.  
+**White**: standard port made from white grapes.  
+**Rosé**: technically a Ruby port, but fermented in a similar manner to a rosé wine.  
+**Tawny with indication of age**: Tawny Ports with age indication (10, 20, 30, 40 years). The number of years does not indicate the age of the grapes, but the average age of the blends. Every bottle of a designated age should have the same flavor regardless of the year it was bottled.  
+**Colheita**: a special Tawny port from a particularly good year. It must be aged for a minimum of seven years in wooden barrels.    
+**Crusted**: normally a blended port aged in the bottle; the year on the label refers to the year it was bottled.  
+**LBV**: Late Bottled Vintage, a high standard wine left in the barrel for longer than a vintage port. It can be filtered or unfiltered.  
+**Reserve**: a premium blended ruby port.  
+**Tawny Reserve**: a Tawny of about seven years. It comes between a standard and a ten year Tawny.  
+**Vintage**: a port made entirely from the grapes of a declared vintage year. The decision to declare a Vintage is made in the spring of the second year following the harvest. Vintage ports are aged in barrels or stainless steel vats for a maximum of two and a half years before bottling.   
+The table below shows the sales of each of the 11 types of Port wine for 2017.  
+
+```{r eval=TRUE, echo=FALSE, message = FALSE, warning=FALSE}
+library(DT)
+library(highcharter)
+ports<-read.csv('tidy-port-wine-data-07-17.csv')
+portsbytotal <- ports %>% 
+        filter(country=="All countries", year=="2017") %>% 
+        select(port,litres, euros) %>% 
+        mutate(euro_per_litre =  round(euros/litres, 2)) %>% 
+        arrange(desc(euro_per_litre))
+datatable(portsbytotal, colnames = c('Port', 'Litres Sold', 'Value', 'Price per Litre'), extensions= list("Buttons"=NULL, "Responsive"=NULL), options = list(pageLength = 11,  dom = 'Bfrtip', buttons = c('copy', 'print'))) %>% 
+        formatCurrency('euros', '\U20AC',  digits = 0) %>% 
+        formatCurrency('litres', currency = '', digits = 0) %>% 
+        formatCurrency('euro_per_litre', '\U20AC', digits = 2)
+
+```
+Sorting the different columns shows their relaive importance in terms of litres sold, overall sales and the price per litre of each Port type.   The standard Tawny and Ruby ports domonate the market in litres sold, but in terms of euro sales, Tawny's with an indication of age attain a similar value, making them attractive to producers.  
+
+
+```{r eval=TRUE, echo=FALSE, message = FALSE, warning=FALSE, fig.cap="How Tawny, Ruby and Tawny with Indication of Age compare in Euro sales from 2007 to 2017" }
+top3<- ports %>% 
+         filter(country=='All countries', port == 'Indication of Age' | port=='Tawny' | port=='Ruby')
+hchart(top3, "line", hcaes(x = year, y = euros, group = port))
+```       
+  The Western European and North American markets currently remain by far the most important for Port wine sales, the table below shows the best of the rest:  
+         
+```{r eval=TRUE, echo=FALSE, message = FALSE, warning=FALSE}
+library(DT)
+portsbytotal<-read_csv("tidy-totals-by-country-08-17.csv")
+ emergingtop20 <- portsbytotal %>%
+         filter(country!= 'All countries', region != 'Western Europe'& region!='Southern Europe'& region!='Northern Europe' & region!= 'Northern America') %>% 
+         select(country, litres.x, year17) %>% 
+         top_n(20,year17) %>% 
+         mutate(perlitre = year17/litres.x) %>% 
+         arrange(desc(year17))
+ datatable(emergingtop20, colnames = c('Country', 'Litres Sold', 'Value', 'Price per Litre'), 
+        extensions= list("Buttons"= NULL, "Responsive"= NULL), 
+        options = list(pageLength = 10,  dom = 'Bfrtip', buttons = c('copy', 'print'))) %>% 
+        formatCurrency('year17', '\U20AC',  digits = 0) %>% 
+        formatCurrency('perlitre', '\U20AC',  digits = 2) %>% 
+        formatCurrency('litres.x', currency = '')
+```
+ 
+All data from the [IVPD](https://www.ivdp.pt/) 
+
+I have more interactive version of this data [here](https://landreformed.shinyapps.io/dashboard/)
