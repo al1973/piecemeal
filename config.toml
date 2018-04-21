@@ -1,4 +1,4 @@
-baseurl = "piecemeal.netlify.com"
+baseurl = "https://piecemeal.netlify.com/"
 languageCode = "en-us"
 title = "Piecemeal"
 theme = "hugo-lithium-theme"
