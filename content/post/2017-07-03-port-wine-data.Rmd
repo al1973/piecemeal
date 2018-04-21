@@ -1,7 +1,7 @@
 ---
 title: Port Wine Data
 author: Alan Ryan
-date: '2017-07-03'
+date: '2018-04-21'
 slug: port-wine-data
 categories: ["R"]
 tags: ["R Markdown", "Port Wine Data", "Highcharter", "DT datatable"]
@@ -13,8 +13,8 @@ While the region is associated primarily with Port wine production, the Douro pr
 
 The Douro DOC has three sub-regions: **Lower Corgo**, **Upper Corgo**, and **Upper Douro**:  
 
-**Lower Corgo** -- Is centered around Peso da Régua, downstream from the river Corgo. It is the wettest and on average coolest zone. It mainly produces the grapes for the cheaper Ruby and Twny ports.  
-**Upper Corgo** -- Is centered around Pinhão. The summertime average temperature of this region is a few degrees higher, and annual rainfall is less. The grapes grown in this zone are considered higher quality, and are used for Vintage, Reserve, aged Tawny and LBV ports.  
+**Lower Corgo** -- Is centered around Peso da Régua, downstream from the River Corgo. It is the wettest and on average coolest zone. It mainly produces the grapes for the cheaper Ruby and Tawny ports.  
+**Upper Corgo** -- Is centered around Pinhão. The summertime average temperature of this region is a few degrees higher, and annual rainfall is less. The grapes grown in this zone are considered higher quality, and are used for Vintage, Reserve, Aged Tawny and LBV ports.  
 **Upper Douro** -- The easternmost zone, extending almost to the Spanish border. This is the least cultivated, most arid and warmest region of the Douro.  
 The [**IVDP**](www.ivdp.pt) (Wine Institute for the Douro and Porto) divides port into two categories: normal (standard ruby and 3-year-old tawny, white and rosé) and special categories, which include all other ports. 
 
@@ -36,9 +36,9 @@ map<- leaflet() %>% setView(lng = -7.789185, lat = 41.164329, zoom =9)
 **Tawny**: standard Tawny, sometimes labeled “Fine Tawny”. It is without an indication of age but must be at least 3 years old before bottling.  
 **White**: standard port made from white grapes.  
 **Rosé**: technically a Ruby port, but fermented in a similar manner to a rosé wine.  
-**Tawny with indication of age**: Tawny Ports with age indication (10, 20, 30, 40 years). The number of years does not indicate the age of the grapes, but the average age of the blends. Every bottle of a designated age should have the same flavor regardless of the year it was bottled.  
+**Tawny with Indication of Age**: blended Tawny ports with age indication (10, 20, 30, 40 years). The number of years does not indicate the age of the grapes, but the average age of the blends. Every bottle of a designated age should have the same flavor regardless of the year it was bottled.  
 **Colheita**: a special Tawny port from a particularly good year. It must be aged for a minimum of seven years in wooden barrels.    
-**Crusted**: normally a blended port aged in the bottle; the year on the label refers to the year it was bottled.  
+**Crusted**: normally a blended port, aged in the bottle; the year on the label refers to the year it was bottled.  
 **LBV**: Late Bottled Vintage, a high standard wine left in the barrel for longer than a vintage port. It can be filtered or unfiltered.  
 **Reserve**: a premium blended ruby port.  
 **Tawny Reserve**: a Tawny of about seven years. It comes between a standard and a ten year Tawny.  
