@@ -1,0 +1,90 @@
+---
+title: Text Analysis  - Moby Dick
+author: Alan Ryan
+date: '2018-02-20'
+slug: text-analysis-moby-dick
+categories: []
+tags: []
+---
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidytext)
+library(gutenbergr)
+library(tidyverse)
+library(stringr)
+library(wordcloud)
+```
+#Moby Dick text analysis
+##1. Word frequency:
+#Victory
+
+First download the book from [Project Gutenberg](https://www.gutenberg.org/)
+
+```{r echo=FALSE, message=FALSE}
+moby <- gutenberg_download(2489) %>%
+        mutate(linenumber = row_number(),
+               chapter = cumsum(str_detect(text, regex("^chapter [\\divxlc]",
+                                                       ignore_case = TRUE))))
+select(moby, -gutenberg_id)
+```
+
+Then, tidy the text
+
+```{r echo=FALSE, message=FALSE}
+tidy_moby <- moby  %>%
+        unnest_tokens(word, text) %>% 
+        select(-gutenberg_id)
+knitr::kable(head(tidy_moby, n=10), align=c(rep('c', 5)))
+```
+
+Next, remove the stop words
+
+```{r echo=FALSE, message=FALSE}
+data(stop_words)
+
+tidy_moby <- tidy_moby %>%
+        anti_join(stop_words)%>%
+        count(word, sort = TRUE)
+```
+
+Use the count() to find the most common words in the book and display them in a word cloud:
+
+```{r echo=FALSE, results='hide'}
+word_cloud_moby <- with(tidy_moby, wordcloud(word, n, max.words = 100))
+word_cloud_moby
+```
+##2. Word embedding
+
+```{r}
+library(wordVectors)
+```
+Read in the text:
+```{r eval=FALSE}
+prep_word2vec("Texts/moby.txt", "moby.txt", lowercase = T)
+```
+
+Train the Model
+
+If the model has not already been created, run these lines:
+
+#```{r eval=FALSE, message=FALSE}
+#moby_model <- train_word2vec("moby.txt",
+#                       output = "moby_model.bin", threads = 1,
+#                        vectors = 100, window = 12, iter=3)
+#```
+
+If a model has previously been created and saved, it can be loaded using:
+
+```{r message=FALSE, results='hide'}
+     
+moby_model <- read.vectors("moby_model.bin")
+```
+
+
+The closest_to function uses cosine similarity to identify words similar to the chosen word 
+
+To see the ten words in the model which are closest to the word “deck”:
+
+```{r message=FALSE}
+sea_10_closest <- closest_to(moby_model, "sea", n = 10)
+knitr::kable(sea_10_closest, digits = 2, align=c(rep('c', 2)))
+```

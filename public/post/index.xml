@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Piecemeal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 22 Apr 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Text Analysis</title>
+      <link>/2018/04/22/text-analysis/</link>
+      <pubDate>Sun, 22 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/04/22/text-analysis/</guid>
+      <description>Moby Dick text analysis Word frequency:  First download the book from Project Gutenberg
+## # A tibble: 23,571 x 4 ## gutenberg_id text linenumber chapter ## &amp;lt;int&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;int&amp;gt; &amp;lt;int&amp;gt; ## 1 2489 MOBY DICK; 1 0 ## 2 2489 OR THE WHALE 2 0 ## 3 2489 &amp;quot;&amp;quot; 3 0 ## 4 2489 by Herman Melville 4 0 ## 5 2489 &amp;quot;&amp;quot; 5 0 ## 6 2489 &amp;quot;&amp;quot; 6 0 ## 7 2489 &amp;quot;&amp;quot; 7 0 ## 8 2489 &amp;quot;&amp;quot; 8 0 ## 9 2489 &amp;quot; CHAPTER 1&amp;quot; 9 0 ## 10 2489 &amp;quot;&amp;quot; 10 0 ## # .</description>
+    </item>
     
     <item>
       <title>Port Wine Data</title>
