@@ -13,10 +13,6 @@ tags: []
 <h1>Moby Dick text analysis</h1>
 <div id="word-frequency" class="section level2">
 <h2>1. Word frequency:</h2>
-</div>
-</div>
-<div id="victory" class="section level1">
-<h1>Victory</h1>
 <p>First download the book from <a href="https://www.gutenberg.org/">Project Gutenberg</a></p>
 <pre><code>## # A tibble: 23,571 x 3
 ##    text               linenumber chapter
@@ -95,70 +91,7 @@ tags: []
 </tbody>
 </table>
 <p>Next, remove the stop words</p>
-<p>Use the count() to find the most common words in the book and display them in a word cloud:</p>
-<p><img src="/post/2018-04-22-text-analysis_files/figure-html/unnamed-chunk-5-1.png" width="672" /> ##2. Word embedding</p>
-<pre class="r"><code>library(wordVectors)</code></pre>
-<p>Read in the text:</p>
-<pre class="r"><code>prep_word2vec(&quot;Texts/moby.txt&quot;, &quot;moby.txt&quot;, lowercase = T)</code></pre>
-<p>Train the Model</p>
-<p>If the model has not already been created, run these lines:</p>
+<p>Find the most common words in the book and display them in a word cloud:</p>
+<p><img src="/post/2018-04-22-text-analysis_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 </div>
-<div id="r-evalfalse-messagefalse-moby_model---train_word2vecmoby.txt-output-moby_model.bin-threads-1-vectors-100-window-12-iter3" class="section level1">
-<h1><code>{r eval=FALSE, message=FALSE} #moby_model &lt;- train_word2vec(&quot;moby.txt&quot;, #                       output = &quot;moby_model.bin&quot;, threads = 1, #                        vectors = 100, window = 12, iter=3) #</code></h1>
-<p>If a model has previously been created and saved, it can be loaded using:</p>
-<pre class="r"><code>moby_model &lt;- read.vectors(&quot;moby_model.bin&quot;)</code></pre>
-<p>The closest_to function uses cosine similarity to identify words similar to the chosen word</p>
-<p>To see the ten words in the model which are closest to the word “deck”:</p>
-<pre class="r"><code>sea_10_closest &lt;- closest_to(moby_model, &quot;sea&quot;, n = 10)
-knitr::kable(sea_10_closest, digits = 2, align=c(rep(&#39;c&#39;, 2)))</code></pre>
-<table>
-<thead>
-<tr class="header">
-<th align="center">word</th>
-<th align="center">similarity to “sea”</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">sea</td>
-<td align="center">1.00</td>
-</tr>
-<tr class="even">
-<td align="center">sparkling</td>
-<td align="center">0.79</td>
-</tr>
-<tr class="odd">
-<td align="center">affrighted</td>
-<td align="center">0.77</td>
-</tr>
-<tr class="even">
-<td align="center">drooping</td>
-<td align="center">0.77</td>
-</tr>
-<tr class="odd">
-<td align="center">plunged</td>
-<td align="center">0.77</td>
-</tr>
-<tr class="even">
-<td align="center">striving</td>
-<td align="center">0.77</td>
-</tr>
-<tr class="odd">
-<td align="center">lazily</td>
-<td align="center">0.76</td>
-</tr>
-<tr class="even">
-<td align="center">waters</td>
-<td align="center">0.76</td>
-</tr>
-<tr class="odd">
-<td align="center">cloud</td>
-<td align="center">0.76</td>
-</tr>
-<tr class="even">
-<td align="center">commotion</td>
-<td align="center">0.76</td>
-</tr>
-</tbody>
-</table>
 </div>
