@@ -1,0 +1,146 @@
+---
+title: Diagrams
+author: Alan Ryan
+date: '2018-04-27'
+slug: diagrams
+categories: []
+tags: []
+---
+Creating diagrams using the DiagammeR package
+
+```{r}
+library(DiagrammeR)
+grViz("
+  digraph example{
+# node statements
+    node [shape = oval,
+          fontname = Helvetica,
+          penwidth = 2.0,
+          color = olive]
+    A, B; C; D; E; F
+    node [shape = box]
+    1; 2; 3; 4; 5; 6; 7; 8
+# edge statements
+    edge[arrowhead = vee,
+         color = sienna]
+    A->1; B->2; B->3; B->4; C->A
+    1->D; E->A; 2->4; 1->5; 1->F
+    E->6; 4->6; 5->7; 6->7;
+    3->8 [label = ' label!',
+          fontname = Helvetica]
+# graph statements
+   graph [nodesep = 0.1]
+  }")
+```
+
+##Sequence Diagram
+
+
+```{r}
+mermaid("
+sequenceDiagram
+  customer->>ticket seller: ask ticket
+  ticket seller->>database: seats
+  alt tickets available
+    database->>ticket seller: ok
+    ticket seller->>customer: confirm
+    customer->>ticket seller: ok
+    ticket seller->>database: book a seat
+    ticket seller->>printer: print ticket
+  else sold out
+    database->>ticket seller: none left
+    ticket seller->>customer: sorry
+  end
+")
+```
+
+
+# Create two node data frames
+
+```{r}
+nodes_1 <-
+        create_node_df(
+                n=4,
+                nodes = 1.4,
+                label = FALSE,
+                type = "lower",
+                style = "filled",
+                color = "aqua",
+                shape = c("circle", "circle",
+                          "rectangle", "rectangle"),
+                data = c(3.5, 2.6, 9.4, 2.7))
+
+
+nodes_1
+
+nodes_2 <-
+        create_node_df(
+                n=4,
+                nodes = 5:8,
+                label = TRUE,
+                type = "upper",
+                style = "filled",
+                color = "red",
+                shape = "triangle",
+                data = c(0.5, 3.9, 3.7, 8.2))
+
+nodes_2
+```
+
+## Create two edge data frames
+```{r}
+edges_1 <-
+        create_edge_df(
+                from = c(1,1,2,3),
+                to = c(2,4,4,1),
+                rel = "requires",
+                color = "green",
+                data = c(2.7, 8.9, 2.6, 0.6))
+
+edges_1
+
+edges_2 <-
+        create_edge_df(
+                from = c(5,7,8,8),
+                to = c(7,8,6,5),
+                rel = "receives",
+                arrowhead = "dot",
+                color = "red")
+
+edges_2
+```
+
+##Combine two node data frames
+```{r}
+all_nodes <- combine_ndfs(nodes_1, nodes_2)
+all_nodes
+```
+##Combine two edge data frames
+
+
+```{r}
+all_edges <- combine_edfs(edges_1, edges_2)
+all_edges
+```
+
+
+## Create the graph object, incorporating the NDFs and the EDFs
+```{r}
+graph <-
+        DiagrammeR::create_graph(
+                nodes_df = all_nodes,
+                edges_df = all_edges)
+```
+
+##View the graph
+```{r}
+render_graph(graph)
+```
+
+##Create a random graph with 15 nodes, 30 edges and then render the graph with the `visNetwork` output option
+```{r}
+render_graph(
+        create_random_graph(n = 15, m = 30),
+        output = "visNetwork")
+
+```

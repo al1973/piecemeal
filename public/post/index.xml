@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Piecemeal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 27 Apr 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Diagrams</title>
+      <link>/2018/04/27/diagrams/</link>
+      <pubDate>Fri, 27 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/04/27/diagrams/</guid>
+      <description>Creating diagrams using the DiagammeR package
+library(DiagrammeR) grViz(&amp;quot; digraph example{ # node statements node [shape = oval, fontname = Helvetica, penwidth = 2.0, color = olive] A, B; C; D; E; F node [shape = box] 1; 2; 3; 4; 5; 6; 7; 8 # edge statements edge[arrowhead = vee, color = sienna] A-&amp;gt;1; B-&amp;gt;2; B-&amp;gt;3; B-&amp;gt;4; C-&amp;gt;A 1-&amp;gt;D; E-&amp;gt;A; 2-&amp;gt;4; 1-&amp;gt;5; 1-&amp;gt;F E-&amp;gt;6; 4-&amp;gt;6; 5-&amp;gt;7; 6-&amp;gt;7; 3-&amp;gt;8 [label = &amp;#39; label!</description>
+    </item>
     
     <item>
       <title>Port Wine Data</title>
@@ -28,36 +38,6 @@
       <guid>/2018/02/20/text-analysis-moby-dick/</guid>
       <description>Moby Dick text analysis 1. Word frequency: First download the book from Project Gutenberg
 ## # A tibble: 23,571 x 3 ## text linenumber chapter ## &amp;lt;chr&amp;gt; &amp;lt;int&amp;gt; &amp;lt;int&amp;gt; ## 1 MOBY DICK; 1 0 ## 2 OR THE WHALE 2 0 ## 3 &amp;quot;&amp;quot; 3 0 ## 4 by Herman Melville 4 0 ## 5 &amp;quot;&amp;quot; 5 0 ## 6 &amp;quot;&amp;quot; 6 0 ## 7 &amp;quot;&amp;quot; 7 0 ## 8 &amp;quot;&amp;quot; 8 0 ## 9 &amp;quot; CHAPTER 1&amp;quot; 9 0 ## 10 &amp;quot;&amp;quot; 10 0 ## # .</description>
-    </item>
-    
-    <item>
-      <title>A Plain Markdown Post</title>
-      <link>/2016/12/30/a-plain-markdown-post/</link>
-      <pubDate>Fri, 30 Dec 2016 21:49:57 -0700</pubDate>
-      
-      <guid>/2016/12/30/a-plain-markdown-post/</guid>
-      <description>This is a post written in plain Markdown (*.md) instead of R Markdown (*.Rmd). The major differences are:
- You cannot run any R code in a plain Markdown document, whereas in an R Markdown document, you can embed R code chunks (```{r}); A plain Markdown post is rendered through Blackfriday, and an R Markdown document is compiled by rmarkdown and Pandoc.  There are many differences in syntax between Blackfriday&amp;rsquo;s Markdown and Pandoc&amp;rsquo;s Markdown.</description>
-    </item>
-    
-    <item>
-      <title>Hello R Markdown</title>
-      <link>/2015/07/23/hello-r-markdown/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      
-      <guid>/2015/07/23/hello-r-markdown/</guid>
-      <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
-    </item>
-    
-    <item>
-      <title>Lorem Ipsum</title>
-      <link>/2015/01/01/lorem-ipsum/</link>
-      <pubDate>Thu, 01 Jan 2015 13:09:13 -0600</pubDate>
-      
-      <guid>/2015/01/01/lorem-ipsum/</guid>
-      <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
     </item>
     
   </channel>

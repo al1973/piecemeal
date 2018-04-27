@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.36.1" />
+
+
+<title>Model Building - Piecemeal</title>
+<meta property="og:title" content="Model Building - Piecemeal">
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.11.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/al1973/piecemeal">GitHub</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">8 min read</span>
+    
+
+    <h1 class="article-title">Model Building</h1>
+
+    
+    <span class="article-date">2018/02/17</span>
+    
+
+    <div class="article-content">
+      <pre class="r"><code>library(tidyverse)
+library(modelr)
+options(na.action = na.warn)
+library(nycflights13)
+library(lubridate)</code></pre>
+<div id="why-are-low-quality-diamonds-more-expensive" class="section level1">
+<h1>Why are low quality diamonds more expensive?</h1>
+<pre class="r"><code>ggplot(diamonds, aes(cut, price)) + geom_boxplot()</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(diamonds, aes(color, price)) + geom_boxplot()</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+<pre class="r"><code>ggplot(diamonds, aes(clarity, price)) + geom_boxplot()</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-2-3.png" width="672" /></p>
+<p>Lower quality diamonds tend to be larger and the weight of a diamond is the single most important factor in determining its price.</p>
+<pre class="r"><code>ggplot(diamonds, aes(carat, price)) + 
+        geom_hex(bins = 50)</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-3-1.png" width="672" /> First, focus on diamonds smaller than 2.5 carats (99.7% of the data) and log-transform the carat and price variables.</p>
+<pre class="r"><code>diamonds2 &lt;- diamonds %&gt;% 
+        filter(carat &lt;= 2.5) %&gt;% 
+        mutate(lprice = log2(price), lcarat = log2(carat))</code></pre>
+<p>Now it is easier to see the relationship between carat and price. Log-transformation makes the pattern linear, linear patterns are earier to work with.</p>
+<pre class="r"><code>ggplot(diamonds2, aes(lcarat, lprice)) + 
+        geom_hex(bins = 50)</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Remove that strong linear pattern by first making the pattern explicit by fitting a model:</p>
+<pre class="r"><code>mod_diamond &lt;- lm(lprice ~ lcarat, data = diamonds2)</code></pre>
+<p>Look at what the model tells us about the data. Note that I back transform the predictions, undoing the log transformation. As a result the predictions can now be overlayed on the raw data:</p>
+<pre class="r"><code>grid &lt;- diamonds2 %&gt;% 
+        data_grid(carat = seq_range(carat, 20)) %&gt;% 
+        mutate(lcarat = log2(carat)) %&gt;% 
+        add_predictions(mod_diamond, &quot;lprice&quot;) %&gt;% 
+        mutate(price = 2 ^ lprice)
+
+ggplot(diamonds2, aes(carat, price)) + 
+        geom_hex(bins = 50) + 
+        geom_line(data = grid, colour = &quot;red&quot;, size = 1)</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>The residuals verify the removal of the strong linear pattern:</p>
+<pre class="r"><code>diamonds2 &lt;- diamonds2 %&gt;% 
+        add_residuals(mod_diamond, &quot;lresid&quot;)
+
+ggplot(diamonds2, aes(lcarat, lresid)) + 
+        geom_hex(bins = 50)</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>We can now re-do the boxplots using those residuals instead of price</p>
+<pre class="r"><code>ggplot(diamonds2, aes(cut, lresid)) + geom_boxplot()</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<pre class="r"><code>ggplot(diamonds2, aes(color, lresid)) + geom_boxplot()</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+<pre class="r"><code>ggplot(diamonds2, aes(clarity, lresid)) + geom_boxplot()</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-9-3.png" width="672" /></p>
+<p>Now we see the relationship we expect: as the quality of the diamond increases, so do their relative price. To interpret the y axis, we need to think about what the residuals are telling us, and what scale they are on. A residual of -1 indicates that lprice was 1 unit lower than a prediction based solely on its weight. 2^−1 is 1/2, points with a value of -1 are half the expected price, and residuals with value 1 are twice the predicted price.</p>
+<div id="building-up-the-model" class="section level2">
+<h2>Building up the model</h2>
+<pre class="r"><code>mod_diamond2 &lt;- lm(lprice ~ lcarat + color + cut + clarity, data = diamonds2)</code></pre>
+<p>Use the .model argument to data_grid:</p>
+<pre class="r"><code>grid &lt;- diamonds2 %&gt;% 
+        data_grid(cut, lcarat = -0.515, color = &quot;G&quot;, clarity = &quot;SI1&quot;) %&gt;% 
+        add_predictions(mod_diamond2)
+grid</code></pre>
+<pre><code>## # A tibble: 5 x 5
+##   cut       lcarat color clarity  pred
+##   &lt;ord&gt;      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;
+## 1 Fair      -0.515 G     SI1      11.0
+## 2 Good      -0.515 G     SI1      11.1
+## 3 Very Good -0.515 G     SI1      11.2
+## 4 Premium   -0.515 G     SI1      11.2
+## 5 Ideal     -0.515 G     SI1      11.2</code></pre>
+<pre class="r"><code>ggplot(grid, aes(cut, pred)) + 
+        geom_point()</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<pre class="r"><code>diamonds2 &lt;- diamonds2 %&gt;% 
+        add_residuals(mod_diamond2, &quot;lresid2&quot;)
+
+ggplot(diamonds2, aes(lcarat, lresid2)) + 
+        geom_hex(bins = 50)</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-11-2.png" width="672" /> A residual of 2 indicates that the diamond is 4 times the price that we expected. It’s often useful to look at unusual values individually:</p>
+<pre class="r"><code>diamonds2 %&gt;% 
+        filter(abs(lresid2) &gt; 1) %&gt;% 
+        add_predictions(mod_diamond2) %&gt;% 
+        mutate(pred = round(2 ^ pred)) %&gt;% 
+        select(price, pred, carat:table, x:z) %&gt;% 
+        arrange(price)</code></pre>
+<pre><code>## # A tibble: 16 x 11
+##    price  pred carat cut       color clarity depth table     x     y     z
+##    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  1013   264 0.250 Fair      F     SI2      54.4  64.0  4.30  4.23  2.32
+##  2  1186   284 0.250 Premium   G     SI2      59.0  60.0  5.33  5.28  3.12
+##  3  1186   284 0.250 Premium   G     SI2      58.8  60.0  5.33  5.28  3.12
+##  4  1262  2644 1.03  Fair      E     I1       78.2  54.0  5.72  5.59  4.42
+##  5  1415   639 0.350 Fair      G     VS2      65.9  54.0  5.57  5.53  3.66
+##  6  1415   639 0.350 Fair      G     VS2      65.9  54.0  5.57  5.53  3.66
+##  7  1715   576 0.320 Fair      F     VS2      59.6  60.0  4.42  4.34  2.61
+##  8  1776   412 0.290 Fair      F     SI1      55.8  60.0  4.48  4.41  2.48
+##  9  2160   314 0.340 Fair      F     I1       55.8  62.0  4.72  4.60  2.60
+## 10  2366   774 0.300 Very Good D     VVS2     60.6  58.0  4.33  4.35  2.63
+## 11  3360  1373 0.510 Premium   F     SI1      62.7  62.0  5.09  4.96  3.15
+## 12  3807  1540 0.610 Good      F     SI2      62.5  65.0  5.36  5.29  3.33
+## 13  3920  1705 0.510 Fair      F     VVS2     65.4  60.0  4.98  4.90  3.23
+## 14  4368  1705 0.510 Fair      F     VVS2     60.7  66.0  5.21  5.11  3.13
+## 15 10011  4048 1.01  Fair      D     SI2      64.6  58.0  6.25  6.20  4.02
+## 16 10470 23622 2.46  Premium   E     SI2      59.7  59.0  8.82  8.76  5.25</code></pre>
+</div>
+</div>
+<div id="process-2-the-number-of-flights-leaving-nyc-each-day" class="section level1">
+<h1>Process 2: the number of flights leaving NYC each day</h1>
+<p>Count the number of flights per day and visualise them with ggplot2:</p>
+<pre class="r"><code>daily &lt;- flights %&gt;% 
+        mutate(date = make_date(year, month, day)) %&gt;% 
+        group_by(date) %&gt;% 
+        summarise(n = n())
+daily</code></pre>
+<pre><code>## # A tibble: 365 x 2
+##    date           n
+##    &lt;date&gt;     &lt;int&gt;
+##  1 2013-01-01   842
+##  2 2013-01-02   943
+##  3 2013-01-03   914
+##  4 2013-01-04   915
+##  5 2013-01-05   720
+##  6 2013-01-06   832
+##  7 2013-01-07   933
+##  8 2013-01-08   899
+##  9 2013-01-09   902
+## 10 2013-01-10   932
+## # ... with 355 more rows</code></pre>
+<pre class="r"><code>ggplot(daily, aes(date, n)) + 
+        geom_line()</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Start by looking at the distribution of flight numbers by day-of-week</p>
+<pre class="r"><code>daily &lt;- daily %&gt;% 
+        mutate(wday = wday(date, label = TRUE))
+ggplot(daily, aes(wday, n)) + 
+        geom_boxplot()</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>There are fewer flights on weekends because most travel is for business. Use a model to remove this strong pattern. Fit the model, and display its predictions overlaid on the original data:</p>
+<pre class="r"><code>mod &lt;- lm(n ~ wday, data = daily)
+
+grid &lt;- daily %&gt;% 
+        data_grid(wday) %&gt;% 
+        add_predictions(mod, &quot;n&quot;)
+
+ggplot(daily, aes(wday, n)) + 
+        geom_boxplot() +
+        geom_point(data = grid, colour = &quot;red&quot;, size = 4)</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>Compute and visualise the residuals:</p>
+<pre class="r"><code>daily &lt;- daily %&gt;% 
+        add_residuals(mod)
+daily %&gt;% 
+        ggplot(aes(date, resid)) + 
+        geom_ref_line(h = 0) + 
+        geom_line()</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>Note the change in the y-axis: now we are seeing the deviation from the expected number of flights, given the day of week. This plot is useful because now that we’ve removed much of the large day-of-week effect, we can see some of the subtler patterns that remain. Drawing a plot with one line for each day of the week</p>
+<pre class="r"><code>ggplot(daily, aes(date, resid, colour = wday)) + 
+        geom_ref_line(h = 0) + 
+        geom_line()</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>Some days with far fewer flights than expected</p>
+<pre class="r"><code>daily %&gt;% 
+        filter(resid &lt; -100)</code></pre>
+<pre><code>## # A tibble: 11 x 4
+##    date           n wday  resid
+##    &lt;date&gt;     &lt;int&gt; &lt;ord&gt; &lt;dbl&gt;
+##  1 2013-01-01   842 Tue    -109
+##  2 2013-01-20   786 Sun    -105
+##  3 2013-05-26   729 Sun    -162
+##  4 2013-07-04   737 Thu    -229
+##  5 2013-07-05   822 Fri    -145
+##  6 2013-09-01   718 Sun    -173
+##  7 2013-11-28   634 Thu    -332
+##  8 2013-11-29   661 Fri    -306
+##  9 2013-12-24   761 Tue    -190
+## 10 2013-12-25   719 Wed    -244
+## 11 2013-12-31   776 Tue    -175</code></pre>
+<p>There seems to be some smoother long term trend over the course of a year. We can highlight that trend with geom_smooth():</p>
+<pre class="r"><code>daily %&gt;% 
+        ggplot(aes(date, resid)) + 
+        geom_ref_line(h = 0) + 
+        geom_line(colour = &quot;grey50&quot;) + 
+        geom_smooth(se = FALSE, span = 0.20)</code></pre>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-19-1.png" width="672" /> We failed to accurately predict the number of flights on Saturday. Go back to the raw numbers, focussing on Saturdays:</p>
+<pre class="r"><code>daily %&gt;% 
+        filter(wday == &quot;Sat&quot;) %&gt;% 
+        ggplot(aes(date, n)) + 
+        geom_point() + 
+        geom_line() +
+        scale_x_date(NULL, date_breaks = &quot;1 month&quot;, date_labels = &quot;%b&quot;)</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-20-1.png" width="672" /> Create a school “term” variable that roughly captures the three school terms</p>
+<pre class="r"><code>term &lt;- function(date) {
+        cut(date, 
+            breaks = ymd(20130101, 20130605, 20130825, 20140101),
+            labels = c(&quot;spring&quot;, &quot;summer&quot;, &quot;fall&quot;) 
+        )
+}
+
+daily &lt;- daily %&gt;% 
+        mutate(term = term(date)) 
+
+daily %&gt;% 
+        filter(wday == &quot;Sat&quot;) %&gt;% 
+        ggplot(aes(date, n, colour = term)) +
+        geom_point(alpha = 1/3) + 
+        geom_line() +
+        scale_x_date(NULL, date_breaks = &quot;1 month&quot;, date_labels = &quot;%b&quot;)</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>See how this new “term” variable affects the other days of the week:</p>
+<pre class="r"><code>daily %&gt;% 
+        ggplot(aes(wday, n, colour = term)) +
+        geom_boxplot()</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>It looks like there is significant variation across the terms, so fitting a separate day of week effect for each term is reasonable. This improves our model, but not as much as we might hope:</p>
+<pre class="r"><code>mod1 &lt;- lm(n ~ wday, data = daily)
+mod2 &lt;- lm(n ~ wday * term, data = daily)
+
+daily %&gt;% 
+        gather_residuals(without_term = mod1, with_term = mod2) %&gt;% 
+        ggplot(aes(date, resid, colour = model)) +
+        geom_line(alpha = 0.75)</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>We can see the problem by overlaying the predictions from the model on to the raw data:</p>
+<pre class="r"><code>  grid &lt;- daily %&gt;% 
+        data_grid(wday, term) %&gt;% 
+        add_predictions(mod2, &quot;n&quot;)
+
+ggplot(daily, aes(wday, n)) +
+        geom_boxplot() + 
+        geom_point(data = grid, colour = &quot;red&quot;) + 
+        facet_wrap(~ term)</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>We have a lot of big outliers. Using MASS::rlm() greatly reduces the impact of the outliers on our estimates:</p>
+<pre class="r"><code>mod3 &lt;- MASS::rlm(n ~ wday * term, data = daily)
+
+daily %&gt;% 
+        add_residuals(mod3, &quot;resid&quot;) %&gt;% 
+        ggplot(aes(date, resid)) + 
+        geom_hline(yintercept = 0, size = 2, colour = &quot;white&quot;) + 
+        geom_line()</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p>Now it’s much easier to see the long-term trend, and the positive and negative outliers.</p>
+<p>A more flexible model captures the pattern we’re interested in. A simple linear trend isn’t adequate, so we could try using a natural spline to fit a smooth curve across the year:</p>
+<pre class="r"><code>library(splines)
+mod &lt;- MASS::rlm(n ~ wday * ns(date, 5), data = daily)
+daily %&gt;% 
+        data_grid(wday, date = seq_range(date, n = 13)) %&gt;% 
+        add_predictions(mod) %&gt;% 
+        ggplot(aes(date, pred, colour = wday)) + 
+        geom_line() +
+        geom_point()</code></pre>
+<p><img src="/post/model_building/2018-02-17-model-building_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+</div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.11.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+  </body>
+</html>
+
