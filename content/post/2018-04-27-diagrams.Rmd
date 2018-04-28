@@ -1,7 +1,7 @@
 ---
 title: Diagrams
 author: Alan Ryan
-date: '2018-04-27'
+date: '2018-04-18'
 slug: diagrams
 categories: []
 tags: []

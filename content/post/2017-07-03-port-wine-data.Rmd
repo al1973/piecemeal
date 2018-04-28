@@ -1,7 +1,7 @@
 ---
 title: Port Wine Data
 author: Alan Ryan
-date: '2018-04-21'
+date: '2018-04-27'
 slug: port-wine-data
 categories: ["R"]
 tags: ["R Markdown", "Port Wine Data", "Highcharter", "DT datatable"]

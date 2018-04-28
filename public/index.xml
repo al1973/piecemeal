@@ -12,32 +12,31 @@
     
     
     <item>
-      <title>Diagrams</title>
-      <link>/2018/04/27/diagrams/</link>
+      <title>Port Wine Data</title>
+      <link>/2018/04/27/port-wine-data/</link>
       <pubDate>Fri, 27 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/04/27/diagrams/</guid>
+      <guid>/2018/04/27/port-wine-data/</guid>
+      <description>The Douro is a Portuguese wine region located on the banks of the river of the same name. It is situated far upstream from the city of Porto.</description>
+    </item>
+    
+    <item>
+      <title>Diagrams</title>
+      <link>/2018/04/18/diagrams/</link>
+      <pubDate>Wed, 18 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/04/18/diagrams/</guid>
       <description>Creating diagrams using the DiagammeR package
 library(DiagrammeR) grViz(&amp;quot; digraph example{ # node statements node [shape = oval, fontname = Helvetica, penwidth = 2.0, color = olive] A, B; C; D; E; F node [shape = box] 1; 2; 3; 4; 5; 6; 7; 8 # edge statements edge[arrowhead = vee, color = sienna] A-&amp;gt;1; B-&amp;gt;2; B-&amp;gt;3; B-&amp;gt;4; C-&amp;gt;A 1-&amp;gt;D; E-&amp;gt;A; 2-&amp;gt;4; 1-&amp;gt;5; 1-&amp;gt;F E-&amp;gt;6; 4-&amp;gt;6; 5-&amp;gt;7; 6-&amp;gt;7; 3-&amp;gt;8 [label = &amp;#39; label!</description>
     </item>
     
     <item>
-      <title>Port Wine Data</title>
-      <link>/2018/04/21/port-wine-data/</link>
-      <pubDate>Sat, 21 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/2018/04/21/port-wine-data/</guid>
-      <description>The Douro is a Portuguese wine region located on the banks of the river of the same name. It is situated far upstream from the city of Porto.</description>
-    </item>
-    
-    <item>
-      <title>Text Analysis  - Moby Dick</title>
+      <title>Text Analysis - Moby Dick</title>
       <link>/2018/02/20/text-analysis-moby-dick/</link>
       <pubDate>Tue, 20 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>/2018/02/20/text-analysis-moby-dick/</guid>
-      <description>Moby Dick text analysis 1. Word frequency: First download the book from Project Gutenberg
-## # A tibble: 23,571 x 3 ## text linenumber chapter ## &amp;lt;chr&amp;gt; &amp;lt;int&amp;gt; &amp;lt;int&amp;gt; ## 1 MOBY DICK; 1 0 ## 2 OR THE WHALE 2 0 ## 3 &amp;quot;&amp;quot; 3 0 ## 4 by Herman Melville 4 0 ## 5 &amp;quot;&amp;quot; 5 0 ## 6 &amp;quot;&amp;quot; 6 0 ## 7 &amp;quot;&amp;quot; 7 0 ## 8 &amp;quot;&amp;quot; 8 0 ## 9 &amp;quot; CHAPTER 1&amp;quot; 9 0 ## 10 &amp;quot;&amp;quot; 10 0 ## # .</description>
+      <description>Moby Dick is Herman Melville’s epic novel of 1851. It tells the story of Captain Ahab’s pursuit of a great white sperm whale that has bitten off his leg. He risks his own life and that of his crew on the whaling ship Pequod. He is gripped by a narcissistic rage in his single-minded voyage of revenge. The tale is narrated by Ishmael, taking part in his first whaling expedition, and we encounter a multi-national crew including Queequeg, Starbuck, Stubb, Tashtego, Flask and Daggoo.</description>
     </item>
     
     <item>

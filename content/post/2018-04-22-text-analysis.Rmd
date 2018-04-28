@@ -1,5 +1,5 @@
 ---
-title: Text Analysis  - Moby Dick
+title: Text Analysis - Moby Dick
 author: Alan Ryan
 date: '2018-02-20'
 slug: text-analysis-moby-dick
@@ -13,10 +13,10 @@ library(tidyverse)
 library(stringr)
 library(wordcloud)
 ```
-#Moby Dick text analysis
-##1. Word frequency:
+*Moby Dick* is Herman Melville's epic novel of 1851. It tells the story of Captain Ahab's pursuit of a great white sperm whale that has bitten off his leg. He risks his own life and that of his crew on the whaling ship *Pequod*. He is gripped by a narcissistic rage in his single-minded voyage of revenge. The tale is narrated by *Ishmael*, taking part in his first whaling expedition, and we encounter a multi-national crew including *Queequeg*, *Starbuck*, *Stubb*, *Tashtego*, *Flask* and *Daggoo*. The story is interspersed with detailed chapters on whales, almost in the form of a mini encyclopedia.  
+Below is an analysis of the text:  
 
-First download the book from [Project Gutenberg](https://www.gutenberg.org/)
+First, download the book from [Project Gutenberg](https://www.gutenberg.org/) and display the output:
 
 ```{r echo=FALSE, message=FALSE}
 moby <- gutenberg_download(2489) %>%
@@ -26,7 +26,7 @@ moby <- gutenberg_download(2489) %>%
 select(moby, -gutenberg_id)
 ```
 
-Then, tidy the text
+Then, tidy the text into a more manageable format
 
 ```{r echo=FALSE, message=FALSE}
 tidy_moby <- moby  %>%
@@ -35,7 +35,7 @@ tidy_moby <- moby  %>%
 knitr::kable(head(tidy_moby, n=10), align=c(rep('c', 5)))
 ```
 
-Next, remove the stop words
+Next, remove the stop words -- the uninteresting, common words, such as: I, me, my, myself, we, our, ours, ourselves, you... 
 
 ```{r echo=FALSE, message=FALSE}
 data(stop_words)
@@ -45,8 +45,9 @@ tidy_moby <- tidy_moby %>%
         count(word, sort = TRUE)
 ```
 
-Find the most common words in the book and display them in a word cloud:
+Of the remaining words, find the book's most frequent and display them in a word cloud:
 
 ```{r echo=FALSE, results='hide'}
 with(tidy_moby, wordcloud(word, n, max.words = 100))
 ```
+The R code used is available on [github](https://github.com/al1973/piecemeal/blob/master/content/post/2018-04-22-text-analysis.Rmd)
