@@ -87,6 +87,6 @@ portsbytotal<-read_csv("tidy-totals-by-country-08-17.csv")
         formatCurrency('litres.x', currency = '')
 ```
  
-All data from the [IVPD](https://www.ivdp.pt/) 
-
+All data from the [IVPD](https://www.ivdp.pt/)  
+The R code used is available on [github](https://github.com/al1973/piecemeal/blob/master/content/post/2017-07-03-port-wine-data.Rmd)  
 I have more interactive version of this data [here](https://landreformed.shinyapps.io/dashboard/)
