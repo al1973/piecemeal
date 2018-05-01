@@ -8,29 +8,30 @@ tags: []
 ---
 Creating diagrams using the DiagammeR package
 
-```{r}
+```{r echo=FALSE}
 library(DiagrammeR)
 grViz("
-  digraph example{
-# node statements
-    node [shape = oval,
-          fontname = Helvetica,
-          penwidth = 2.0,
-          color = olive]
-    A, B; C; D; E; F
-    node [shape = box]
-    1; 2; 3; 4; 5; 6; 7; 8
-# edge statements
-    edge[arrowhead = vee,
-         color = sienna]
-    A->1; B->2; B->3; B->4; C->A
-    1->D; E->A; 2->4; 1->5; 1->F
-    E->6; 4->6; 5->7; 6->7;
-    3->8 [label = ' label!',
-          fontname = Helvetica]
-# graph statements
-   graph [nodesep = 0.1]
-  }")
+digraph boxes_and_circles {
+
+  # a 'graph' statement
+  graph [overlap = true, fontsize = 10]
+
+  # several 'node' statements
+  node [shape = box,
+        fontname = Helvetica]
+  A; B; C; D; E; F
+
+  node [shape = circle,
+        fixedsize = true,
+        width = 0.9] // sets as circles
+  1; 2; 3; 4; 5; 6; 7; 8
+
+  # several 'edge' statements
+  A->1 B->2 B->3 B->4 C->A
+  1->D E->A 2->4 1->5 1->F
+  E->6 4->6 5->7 6->7 3->8
+}
+")
 ```
 
 ##Sequence Diagram
@@ -61,17 +62,14 @@ sequenceDiagram
 nodes_1 <-
         create_node_df(
                 n=4,
-                nodes = 1.4,
-                label = FALSE,
+                nodes = 1:4,
+                label = TRUE,
                 type = "lower",
                 style = "filled",
                 color = "aqua",
                 shape = c("circle", "circle",
                           "rectangle", "rectangle"),
                 data = c(3.5, 2.6, 9.4, 2.7))
-
-
-nodes_1
 
 nodes_2 <-
         create_node_df(
@@ -83,8 +81,6 @@ nodes_2 <-
                 color = "red",
                 shape = "triangle",
                 data = c(0.5, 3.9, 3.7, 8.2))
-
-nodes_2
 ```
 
 ## Create two edge data frames
@@ -97,8 +93,6 @@ edges_1 <-
                 color = "green",
                 data = c(2.7, 8.9, 2.6, 0.6))
 
-edges_1
-
 edges_2 <-
         create_edge_df(
                 from = c(5,7,8,8),
@@ -107,20 +101,17 @@ edges_2 <-
                 arrowhead = "dot",
                 color = "red")
 
-edges_2
 ```
 
 ##Combine two node data frames
 ```{r}
 all_nodes <- combine_ndfs(nodes_1, nodes_2)
-all_nodes
 ```
 ##Combine two edge data frames
 
 
 ```{r}
 all_edges <- combine_edfs(edges_1, edges_2)
-all_edges
 ```
 
 

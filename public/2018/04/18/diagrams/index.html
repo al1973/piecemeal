@@ -57,7 +57,7 @@
 
   <article class="article">
     
-    <span class="article-duration">5 min read</span>
+    <span class="article-duration">3 min read</span>
     
 
     <h1 class="article-title">Diagrams</h1>
@@ -83,30 +83,8 @@
 
 
 <p>Creating diagrams using the DiagammeR package</p>
-<pre class="r"><code>library(DiagrammeR)
-grViz(&quot;
-  digraph example{
-# node statements
-    node [shape = oval,
-          fontname = Helvetica,
-          penwidth = 2.0,
-          color = olive]
-    A, B; C; D; E; F
-    node [shape = box]
-    1; 2; 3; 4; 5; 6; 7; 8
-# edge statements
-    edge[arrowhead = vee,
-         color = sienna]
-    A-&gt;1; B-&gt;2; B-&gt;3; B-&gt;4; C-&gt;A
-    1-&gt;D; E-&gt;A; 2-&gt;4; 1-&gt;5; 1-&gt;F
-    E-&gt;6; 4-&gt;6; 5-&gt;7; 6-&gt;7;
-    3-&gt;8 [label = &#39; label!&#39;,
-          fontname = Helvetica]
-# graph statements
-   graph [nodesep = 0.1]
-  }&quot;)</code></pre>
 <div id="htmlwidget-1" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1">{"x":{"diagram":"\n  digraph example{\n# node statements\n    node [shape = oval,\n          fontname = Helvetica,\n          penwidth = 2.0,\n          color = olive]\n    A, B; C; D; E; F\n    node [shape = box]\n    1; 2; 3; 4; 5; 6; 7; 8\n# edge statements\n    edge[arrowhead = vee,\n         color = sienna]\n    A->1; B->2; B->3; B->4; C->A\n    1->D; E->A; 2->4; 1->5; 1->F\n    E->6; 4->6; 5->7; 6->7;\n    3->8 [label = \" label!\",\n          fontname = Helvetica]\n# graph statements\n   graph [nodesep = 0.1]\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"diagram":"\ndigraph boxes_and_circles {\n\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n\n  # several \"node\" statements\n  node [shape = box,\n        fontname = Helvetica]\n  A; B; C; D; E; F\n\n  node [shape = circle,\n        fixedsize = true,\n        width = 0.9] // sets as circles\n  1; 2; 3; 4; 5; 6; 7; 8\n\n  # several \"edge\" statements\n  A->1 B->2 B->3 B->4 C->A\n  1->D E->A 2->4 1->5 1->F\n  E->6 4->6 5->7 6->7 3->8\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <div id="sequence-diagram" class="section level2">
 <h2>Sequence Diagram</h2>
 <pre class="r"><code>mermaid(&quot;
@@ -132,8 +110,8 @@ sequenceDiagram
 <pre class="r"><code>nodes_1 &lt;-
         create_node_df(
                 n=4,
-                nodes = 1.4,
-                label = FALSE,
+                nodes = 1:4,
+                label = TRUE,
                 type = &quot;lower&quot;,
                 style = &quot;filled&quot;,
                 color = &quot;aqua&quot;,
@@ -141,14 +119,7 @@ sequenceDiagram
                           &quot;rectangle&quot;, &quot;rectangle&quot;),
                 data = c(3.5, 2.6, 9.4, 2.7))
 
-
-nodes_1</code></pre>
-<pre><code>##   id  type label nodes  style color     shape data
-## 1  1 lower  &lt;NA&gt;   1.4 filled  aqua    circle  3.5
-## 2  2 lower  &lt;NA&gt;   1.4 filled  aqua    circle  2.6
-## 3  3 lower  &lt;NA&gt;   1.4 filled  aqua rectangle  9.4
-## 4  4 lower  &lt;NA&gt;   1.4 filled  aqua rectangle  2.7</code></pre>
-<pre class="r"><code>nodes_2 &lt;-
+nodes_2 &lt;-
         create_node_df(
                 n=4,
                 nodes = 5:8,
@@ -157,14 +128,7 @@ nodes_1</code></pre>
                 style = &quot;filled&quot;,
                 color = &quot;red&quot;,
                 shape = &quot;triangle&quot;,
-                data = c(0.5, 3.9, 3.7, 8.2))
-
-nodes_2</code></pre>
-<pre><code>##   id  type label nodes  style color    shape data
-## 1  1 upper     1     5 filled   red triangle  0.5
-## 2  2 upper     2     6 filled   red triangle  3.9
-## 3  3 upper     3     7 filled   red triangle  3.7
-## 4  4 upper     4     8 filled   red triangle  8.2</code></pre>
+                data = c(0.5, 3.9, 3.7, 8.2))</code></pre>
 <div id="create-two-edge-data-frames" class="section level2">
 <h2>Create two edge data frames</h2>
 <pre class="r"><code>edges_1 &lt;-
@@ -175,54 +139,21 @@ nodes_2</code></pre>
                 color = &quot;green&quot;,
                 data = c(2.7, 8.9, 2.6, 0.6))
 
-edges_1</code></pre>
-<pre><code>##   id from to      rel color data
-## 1  1    1  2 requires green  2.7
-## 2  2    1  4 requires green  8.9
-## 3  3    2  4 requires green  2.6
-## 4  4    3  1 requires green  0.6</code></pre>
-<pre class="r"><code>edges_2 &lt;-
+edges_2 &lt;-
         create_edge_df(
                 from = c(5,7,8,8),
                 to = c(7,8,6,5),
                 rel = &quot;receives&quot;,
                 arrowhead = &quot;dot&quot;,
-                color = &quot;red&quot;)
-
-edges_2</code></pre>
-<pre><code>##   id from to      rel arrowhead color
-## 1  1    5  7 receives       dot   red
-## 2  2    7  8 receives       dot   red
-## 3  3    8  6 receives       dot   red
-## 4  4    8  5 receives       dot   red</code></pre>
+                color = &quot;red&quot;)</code></pre>
 </div>
 <div id="combine-two-node-data-frames" class="section level2">
 <h2>Combine two node data frames</h2>
-<pre class="r"><code>all_nodes &lt;- combine_ndfs(nodes_1, nodes_2)
-all_nodes</code></pre>
-<pre><code>##   id  type label nodes  style color     shape data
-## 1  1 lower  &lt;NA&gt;   1.4 filled  aqua    circle  3.5
-## 2  2 lower  &lt;NA&gt;   1.4 filled  aqua    circle  2.6
-## 3  3 lower  &lt;NA&gt;   1.4 filled  aqua rectangle  9.4
-## 4  4 lower  &lt;NA&gt;   1.4 filled  aqua rectangle  2.7
-## 5  5 upper     1   5.0 filled   red  triangle  0.5
-## 6  6 upper     2   6.0 filled   red  triangle  3.9
-## 7  7 upper     3   7.0 filled   red  triangle  3.7
-## 8  8 upper     4   8.0 filled   red  triangle  8.2</code></pre>
+<pre class="r"><code>all_nodes &lt;- combine_ndfs(nodes_1, nodes_2)</code></pre>
 </div>
 <div id="combine-two-edge-data-frames" class="section level2">
 <h2>Combine two edge data frames</h2>
-<pre class="r"><code>all_edges &lt;- combine_edfs(edges_1, edges_2)
-all_edges</code></pre>
-<pre><code>##   id from to      rel color data arrowhead
-## 1  1    1  2 requires green  2.7      &lt;NA&gt;
-## 2  2    1  4 requires green  8.9      &lt;NA&gt;
-## 3  3    2  4 requires green  2.6      &lt;NA&gt;
-## 4  4    3  1 requires green  0.6      &lt;NA&gt;
-## 5  5    5  7 receives   red   NA       dot
-## 6  6    7  8 receives   red   NA       dot
-## 7  7    8  6 receives   red   NA       dot
-## 8  8    8  5 receives   red   NA       dot</code></pre>
+<pre class="r"><code>all_edges &lt;- combine_edfs(edges_1, edges_2)</code></pre>
 </div>
 <div id="create-the-graph-object-incorporating-the-ndfs-and-the-edfs" class="section level2">
 <h2>Create the graph object, incorporating the NDFs and the EDFs</h2>
@@ -235,7 +166,7 @@ all_edges</code></pre>
 <h2>View the graph</h2>
 <pre class="r"><code>render_graph(graph)</code></pre>
 <div id="htmlwidget-3" style="width:672px;height:480px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n     fontsize = \"10\",\n     shape = \"circle\",\n     fixedsize = \"true\",\n     width = \"0.5\",\n     style = \"filled\",\n     fillcolor = \"aliceblue\",\n     color = \"gray70\",\n     fontcolor = \"gray50\"]\n\nedge [len = \"1.5\",\n     color = \"gray40\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [style = \"filled\", color = \"aqua\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [style = \"filled\", color = \"aqua\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [style = \"filled\", color = \"aqua\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [style = \"filled\", color = \"aqua\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"1\", style = \"filled\", color = \"red\", shape = \"triangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"6\" [label = \"2\", style = \"filled\", color = \"red\", shape = \"triangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"7\" [label = \"3\", style = \"filled\", color = \"red\", shape = \"triangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"8\" [label = \"4\", style = \"filled\", color = \"red\", shape = \"triangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [id = \"1\", color = \"green\", color = \"green\"] \n\"1\"->\"4\" [id = \"2\", color = \"green\", color = \"green\"] \n\"2\"->\"4\" [id = \"3\", color = \"green\", color = \"green\"] \n\"3\"->\"1\" [id = \"4\", color = \"green\", color = \"green\"] \n\"5\"->\"7\" [id = \"5\", color = \"red\", arrowhead = \"dot\"] \n\"7\"->\"8\" [id = \"6\", color = \"red\", arrowhead = \"dot\"] \n\"8\"->\"6\" [id = \"7\", color = \"red\", arrowhead = \"dot\"] \n\"8\"->\"5\" [id = \"8\", color = \"red\", arrowhead = \"dot\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"diagram":"digraph {\n\ngraph [layout = \"neato\",\n       outputorder = \"edgesfirst\",\n       bgcolor = \"white\"]\n\nnode [fontname = \"Helvetica\",\n     fontsize = \"10\",\n     shape = \"circle\",\n     fixedsize = \"true\",\n     width = \"0.5\",\n     style = \"filled\",\n     fillcolor = \"aliceblue\",\n     color = \"gray70\",\n     fontcolor = \"gray50\"]\n\nedge [len = \"1.5\",\n     color = \"gray40\",\n     arrowsize = \"0.5\"]\n\n  \"1\" [label = \"1\", style = \"filled\", color = \"aqua\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"2\" [label = \"2\", style = \"filled\", color = \"aqua\", shape = \"circle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"3\" [label = \"3\", style = \"filled\", color = \"aqua\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"4\" [label = \"4\", style = \"filled\", color = \"aqua\", shape = \"rectangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"5\" [label = \"1\", style = \"filled\", color = \"red\", shape = \"triangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"6\" [label = \"2\", style = \"filled\", color = \"red\", shape = \"triangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"7\" [label = \"3\", style = \"filled\", color = \"red\", shape = \"triangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n  \"8\" [label = \"4\", style = \"filled\", color = \"red\", shape = \"triangle\", fillcolor = \"#F0F8FF\", fontcolor = \"#000000\"] \n\"1\"->\"2\" [id = \"1\", color = \"green\", color = \"green\"] \n\"1\"->\"4\" [id = \"2\", color = \"green\", color = \"green\"] \n\"2\"->\"4\" [id = \"3\", color = \"green\", color = \"green\"] \n\"3\"->\"1\" [id = \"4\", color = \"green\", color = \"green\"] \n\"5\"->\"7\" [id = \"5\", color = \"red\", arrowhead = \"dot\"] \n\"7\"->\"8\" [id = \"6\", color = \"red\", arrowhead = \"dot\"] \n\"8\"->\"6\" [id = \"7\", color = \"red\", arrowhead = \"dot\"] \n\"8\"->\"5\" [id = \"8\", color = \"red\", arrowhead = \"dot\"] \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="create-a-random-graph-with-15-nodes-30-edges-and-then-render-the-graph-with-the-visnetwork-output-option" class="section level2">
 <h2>Create a random graph with 15 nodes, 30 edges and then render the graph with the <code>visNetwork</code> output option</h2>
@@ -243,7 +174,7 @@ all_edges</code></pre>
         create_random_graph(n = 15, m = 30),
         output = &quot;visNetwork&quot;)</code></pre>
 <div id="htmlwidget-4" style="width:672px;height:480px;" class="visNetwork html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4">{"x":{"nodes":{"id":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],"group":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"label":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],"value":[5.5,0.5,6,9.5,9.5,6,6,3.5,7,5,2,6,3.5,8.5,9.5]},"edges":{"id":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],"from":[2,11,5,4,4,2,1,8,2,2,7,7,2,3,4,5,1,8,1,6,1,6,8,3,3,3,5,10,12,2],"to":[6,13,12,14,8,11,11,10,9,15,11,15,3,6,10,8,6,15,9,12,12,9,11,9,5,12,6,15,13,4],"label":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":{"enabled":true,"scaleFactor":1}}},"physics":{"stabilization":{"enabled":true,"onlyDynamicEdges":false,"fit":true}},"layout":{"improvedLayout":true}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"nodes":{"id":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],"group":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"label":["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"],"value":[3.5,9.5,3.5,2.5,8.5,1.5,8.5,2,0.5,4,4.5,8,3,5.5,1]},"edges":{"id":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],"from":[4,1,1,11,1,8,9,5,1,7,2,6,12,5,2,8,4,11,5,3,3,3,7,9,7,4,5,3,3,10],"to":[14,2,15,12,14,11,14,15,8,14,12,7,13,11,9,9,10,13,10,10,6,14,13,15,9,8,7,7,8,14],"label":[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot"},"manipulation":{"enabled":false},"edges":{"arrows":{"to":{"enabled":true,"scaleFactor":1}}},"physics":{"stabilization":{"enabled":true,"onlyDynamicEdges":false,"fit":true}},"layout":{"improvedLayout":true}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 

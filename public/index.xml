@@ -27,7 +27,7 @@
       
       <guid>/2018/04/18/diagrams/</guid>
       <description>Creating diagrams using the DiagammeR package
-library(DiagrammeR) grViz(&amp;quot; digraph example{ # node statements node [shape = oval, fontname = Helvetica, penwidth = 2.0, color = olive] A, B; C; D; E; F node [shape = box] 1; 2; 3; 4; 5; 6; 7; 8 # edge statements edge[arrowhead = vee, color = sienna] A-&amp;gt;1; B-&amp;gt;2; B-&amp;gt;3; B-&amp;gt;4; C-&amp;gt;A 1-&amp;gt;D; E-&amp;gt;A; 2-&amp;gt;4; 1-&amp;gt;5; 1-&amp;gt;F E-&amp;gt;6; 4-&amp;gt;6; 5-&amp;gt;7; 6-&amp;gt;7; 3-&amp;gt;8 [label = &amp;#39; label!</description>
+ {&#34;x&#34;:{&#34;diagram&#34;:&#34;\ndigraph boxes_and_circles {\n\n # a \&#34;graph\&#34; statement\n graph [overlap = true, fontsize = 10]\n\n # several \&#34;node\&#34; statements\n node [shape = box,\n fontname = Helvetica]\n A; B; C; D; E; F\n\n node [shape = circle,\n fixedsize = true,\n width = 0.9] // sets as circles\n 1; 2; 3; 4; 5; 6; 7; 8\n\n # several \&#34;</description>
     </item>
     
     <item>
