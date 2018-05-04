@@ -111,7 +111,7 @@ all_edges <- combine_edfs(edges_1, edges_2)
 
 ```{r echo=FALSE}
 graph <-
-        DiagrammeR::create_graph(
+        create_graph(
                 nodes_df = all_nodes,
                 edges_df = all_edges)
 render_graph(graph)
