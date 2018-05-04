@@ -6,7 +6,7 @@ slug: diagrams
 categories: []
 tags: []
 ---
-Creating diagrams using the DiagammeR package
+#Creating diagrams using the DiagammeR package
 
 ```{r echo=FALSE}
 library(DiagrammeR)
@@ -34,10 +34,9 @@ digraph boxes_and_circles {
 ")
 ```
 
-##Sequence Diagram
+Sequence Diagram:
 
-
-```{r}
+```{r echo=FALSE}
 mermaid("
 sequenceDiagram
   customer->>ticket seller: ask ticket
@@ -56,9 +55,9 @@ sequenceDiagram
 ```
 
 
-# Create two node data frames
+Create two node data frames and two edge data frames and combine them. Then, create the graph object, incorporating the NDFs and the EDFs and view the graph:
 
-```{r}
+```{r echo=FALSE}
 nodes_1 <-
         create_node_df(
                 n=4,
@@ -83,8 +82,8 @@ nodes_2 <-
                 data = c(0.5, 3.9, 3.7, 8.2))
 ```
 
-## Create two edge data frames
-```{r}
+
+```{r echo=FALSE}
 edges_1 <-
         create_edge_df(
                 from = c(1,1,2,3),
@@ -103,32 +102,22 @@ edges_2 <-
 
 ```
 
-##Combine two node data frames
-```{r}
+
+```{r echo=FALSE}
 all_nodes <- combine_ndfs(nodes_1, nodes_2)
-```
-##Combine two edge data frames
-
-
-```{r}
 all_edges <- combine_edfs(edges_1, edges_2)
 ```
 
 
-## Create the graph object, incorporating the NDFs and the EDFs
-```{r}
+```{r echo=FALSE}
 graph <-
         DiagrammeR::create_graph(
                 nodes_df = all_nodes,
                 edges_df = all_edges)
-```
-
-##View the graph
-```{r}
 render_graph(graph)
 ```
 
-##Create a random graph with 15 nodes, 30 edges and then render the graph with the `visNetwork` output option
+Create a random graph with 15 nodes, 30 edges and then render the graph with `visNetwork`:  
 ```{r}
 render_graph(
         create_random_graph(n = 15, m = 30),

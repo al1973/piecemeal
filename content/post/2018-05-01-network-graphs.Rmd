@@ -1,0 +1,33 @@
+---
+title: Network Graphs
+author: ''
+date: '2018-05-01'
+slug: network-graphs
+categories: []
+tags: []
+---
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(networkD3)
+
+# Create fake data
+src <- c("A", "A", "A", "A",
+        "B", "B", "C", "C", "D")
+target <- c("B", "C", "D", "J",
+            "E", "F", "G", "H", "I")
+networkData <- data.frame(src, target)
+
+# Plot
+simpleNetwork(networkData)
+```
+```{r echo=FALSE}
+library(networkD3)
+data(MisLinks)
+data(MisNodes)
+
+# Plot
+forceNetwork(Links = MisLinks, Nodes = MisNodes,
+            Source = "source", Target = "target",
+            Value = "value", NodeID = "name",
+            Group = "group", opacity = 0.8)
+```
+
