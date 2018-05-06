@@ -36,7 +36,7 @@ digraph boxes_and_circles {
 
 Sequence Diagram:
 
-```{r echo=FALSE}
+```{r echo = FALSE}
 mermaid("
 sequenceDiagram
   customer->>ticket seller: ask ticket
