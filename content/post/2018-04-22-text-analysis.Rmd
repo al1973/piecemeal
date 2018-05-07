@@ -43,11 +43,13 @@ data(stop_words)
 tidy_moby <- tidy_moby %>%
         anti_join(stop_words)%>%
         count(word, sort = TRUE)
+
 ```
 
-Of the remaining words, find the book's most frequent and display them in a word cloud:
+Of the remaining words, find the book's most frequent and display the top 10 in a table and then in a word cloud:
 
-```{r echo=FALSE, results='hide'}
+```{r echo=FALSE}
+knitr::kable(head(tidy_moby, n=10), align=c(rep('c', 5)))
 with(tidy_moby, wordcloud(word, n, max.words = 100))
 ```
 The R code used is available on [github](https://github.com/al1973/piecemeal/blob/master/content/post/2018-04-22-text-analysis.Rmd)
