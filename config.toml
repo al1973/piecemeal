@@ -1,6 +1,6 @@
 baseurl = "https://piecemeal.netlify.com/"
 languageCode = "en-us"
-title = "Piecemeal"
+title = "piecemeal"
 theme = "hugo-lithium-theme"
 googleAnalytics = ""
 disqusShortname = ""

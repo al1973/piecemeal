@@ -49,7 +49,7 @@ $ git checkout testing
 ```{r echo=FALSE, fig.align='left'}
 grViz("
 digraph {
-  graph [overlap = true, fontsize = 12]
+  graph [overlap = true, fontsize = 12, rankdir = RL]
   node [shape = box, fontname = Helvetica, style = filled]
   node[fillcolor = yellow]  
   'one'; 'two'; 'three'
@@ -67,7 +67,7 @@ digraph {
 ```{r echo=FALSE}
 grViz("
 digraph {
-  graph [overlap = true, fontsize = 10]
+  graph [overlap = true, fontsize = 10, rankdir = RL]
   node [shape = box, fontname = Helvetica, style = filled]
   node[fillcolor = yellow] 
   'one'; 'two'; 'three'; 'four' 
@@ -88,7 +88,7 @@ $ git checkout master
 library(DiagrammeR)
 grViz("
 digraph {
-  graph [overlap = true, fontsize = 10]
+  graph [overlap = true, fontsize = 10, rankdir = RL]
   node [shape = box, fontname = Helvetica, style = filled]
   node[fillcolor = yellow] 
   'one'; 'two'; 'three'; 'four' 
@@ -105,7 +105,7 @@ digraph {
 ```{r echo=FALSE}
 grViz("
 digraph {
-  graph [overlap = true, fontsize = 10]
+  graph [overlap = true, fontsize = 10, rankdir = RL]
   node [shape = box, fontname = Helvetica, style = filled]
   node[fillcolor = yellow] 
   'one'; 'two'; 'three'; 'four'; 'five'
