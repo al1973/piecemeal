@@ -20,7 +20,7 @@
       <description>Git is a version control system used to track changes in computer files and to coordinate work among multiple users.
 After installing Git you can initialize a repository:
 $ git init or alternatively, clone an existing repository:
-$ git clone https://github.com/al1973/piecemeal.git Add three new files and then commit them:
+$ git clone https://github.com/al1973/piecemeal.git As an example, add three new files and then commit them to the repository:
 $ git add one two three $ git commit -m &amp;#39;First commit&amp;#39; You get a master branch pointed to by HEAD:</description>
     </item>
     

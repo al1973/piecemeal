@@ -57,7 +57,7 @@
 
   <article class="article">
     
-    <span class="article-duration">2 min read</span>
+    <span class="article-duration">3 min read</span>
     
 
     <h1 class="article-title">Git</h1>
@@ -78,7 +78,7 @@
 <pre class="r"><code>$ git init</code></pre>
 <p><strong>or alternatively, <em>clone</em> an existing repository:</strong></p>
 <pre class="r"><code>$ git clone https://github.com/al1973/piecemeal.git</code></pre>
-<p><strong>Add three new files and then commit them:</strong></p>
+<p><strong>As an example, add three new files and then commit them to the repository:</strong></p>
 <pre class="r"><code>$ git add one two three
 $ git commit -m &#39;First commit&#39;</code></pre>
 <p><strong>You get a <em>master</em> branch pointed to by <em>HEAD</em>:</strong><br />
@@ -97,8 +97,11 @@ $ git commit -m &#39;First commit&#39;</code></pre>
 <script type="application/json" data-for="htmlwidget-4">{"x":{"diagram":"\ndigraph {\n  graph [overlap = true, fontsize = 10, rankdir = RL]\n  node [shape = box, fontname = Helvetica, style = filled]\n  node[fillcolor = yellow] \n  \"one\"; \"two\"; \"three\"; \"four\" \n  node[shape = oval, fillcolor = orange]\n  \"HEAD\"\n  node[fillcolor = green]\n  \"testing\"; \"master\"\n  edge[color = grey]\n  \"master\"->\"three\" \"testing\"->\"four\" \"HEAD\"->\"master\" \"four\"->\"three\" \"three\"->\"two\"             \"two\"->\"one\"\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script> <strong>Make another change and commit:</strong><br />
 <div id="htmlwidget-5" style="width:672px;height:480px;" class="grViz html-widget"></div>
 <script type="application/json" data-for="htmlwidget-5">{"x":{"diagram":"\ndigraph {\n  graph [overlap = true, fontsize = 10, rankdir = RL]\n  node [shape = box, fontname = Helvetica, style = filled]\n  node[fillcolor = yellow] \n  \"one\"; \"two\"; \"three\"; \"four\"; \"five\"\n  node[shape = oval, fillcolor = orange]\n  \"HEAD\"\n  node[fillcolor = green]\n  \"testing\"; \"master\"\n  edge[color = grey]\n  \"master\"->\"five\" \"testing\"->\"four\" \"HEAD\"->\"master\" \"five\"-> \"three\" \"four\" -> \"three\"          \"three\"->\"two\" \"two\"->\"one\"\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script> <strong>When you are ready you can merge the 2 branches together.</strong><br />
-<strong>Use the <em>merge</em> command to combine the <em>testing</em> branch with the <em>master</em> branch:</strong></p>
-<pre class="r"><code>$ git merge testing</code></pre>
+<strong>Use the <em>merge</em> command to combine the <em>testing</em> branch with the <em>master</em> branch and then delete the <em>testing</em> branch:</strong></p>
+<pre class="r"><code>$ git merge testing
+$ git branch -d testing</code></pre>
+<div id="htmlwidget-6" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6">{"x":{"diagram":"\ndigraph {\n  graph [overlap = true, fontsize = 10, rankdir = RL]\n  node [shape = box, fontname = Helvetica, style = filled]\n  node[fillcolor = yellow] \n  \"one\"; \"two\"; \"three\"; \"four\"; \"five\"\n  node[shape = oval, fillcolor = orange]\n  \"HEAD\"\n  node[fillcolor = green]\n  \"master\"\n  edge[color = grey]\n  \"master\"->\"five\" \"five\"->\"four\" \"HEAD\"->\"master\" \"four\"-> \"three\" \"three\"->\"two\" \"two\"->\"one\"\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 
     </div>
   </article>

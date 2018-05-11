@@ -15,7 +15,7 @@ $ git init
 ```{r eval=FALSE, include=TRUE}
 $ git clone https://github.com/al1973/piecemeal.git
 ```
-**Add three new files and then commit them:**  
+**As an example, add three new files and then commit them to the repository:**  
 ```{r eval=FALSE, include=TRUE}
 $ git add one two three
 $ git commit -m 'First commit'
@@ -119,8 +119,25 @@ digraph {
 ")
 ```
 **When you are ready you can merge the 2 branches together.**  
-**Use the *merge* command to combine the *testing* branch with the *master* branch:**  
+**Use the *merge* command to combine the *testing* branch with the *master* branch and then delete the *testing* branch:**  
 
 ```{r eval=FALSE, include=TRUE}
 $ git merge testing
+$ git branch -d testing
+```
+```{r echo=FALSE}
+grViz("
+digraph {
+  graph [overlap = true, fontsize = 10, rankdir = RL]
+  node [shape = box, fontname = Helvetica, style = filled]
+  node[fillcolor = yellow] 
+  'one'; 'two'; 'three'; 'four'; 'five'
+  node[shape = oval, fillcolor = orange]
+  'HEAD'
+  node[fillcolor = green]
+  'master'
+  edge[color = grey]
+  'master'->'five' 'five'->'four' 'HEAD'->'master' 'four'-> 'three' 'three'->'two' 'two'->'one'
+}
+")
 ```
