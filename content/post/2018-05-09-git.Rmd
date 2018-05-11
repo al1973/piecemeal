@@ -1,0 +1,126 @@
+---
+title: Git
+author: Alan Ryan
+date: '2018-05-09'
+slug: git
+categories: []
+tags: []
+---
+**Git is a version control system used to track changes in computer files and to coordinate work among multiple users**  
+**After installing Git you can initialize a repository:**  
+```{r eval=FALSE, include=TRUE}
+$ git init
+```
+**or alternatively, *clone* an existing repository:**  
+```{r eval=FALSE, include=TRUE}
+$ git clone https://github.com/al1973/piecemeal.git
+```
+**Add three new files and then commit them:**  
+```{r eval=FALSE, include=TRUE}
+$ git add one two three
+$ git commit -m 'First commit'
+```
+**You get a *master* branch pointed to by *HEAD*:**  
+```{r echo=FALSE}
+library(DiagrammeR)
+grViz("
+digraph {
+  graph [overlap = true, fontsize = 12, rankdir = RL]
+  node [shape = box, fontname = Helvetica, style = filled]
+  node[fillcolor = yellow]  
+  'one'; 'two'; 'three'
+  node[shape = oval, fillcolor = orange]
+  'HEAD'
+  node[fillcolor = green]
+  'master'
+  edge[color = grey]
+  'master'->'three' 'HEAD'->'master' 'three'->'two' 'two'->'one'
+}
+")
+```
+**Create a new branch called *testing*:** 
+```{r eval=FALSE, include=TRUE}
+$ git branch testing  
+```
+**Switch to the *testing* branch:** 
+```{r eval=FALSE, include=TRUE}
+$ git checkout testing
+```
+```{r echo=FALSE, fig.align='left'}
+grViz("
+digraph {
+  graph [overlap = true, fontsize = 12]
+  node [shape = box, fontname = Helvetica, style = filled]
+  node[fillcolor = yellow]  
+  'one'; 'two'; 'three'
+  node[shape = oval, fillcolor = orange]
+  'HEAD'
+  node[fillcolor = green]
+  'testing'; 'master'
+  edge[color = grey]
+  'master'->'three' 'testing'->'three' 'HEAD'->'testing' 'three'->'two' 'two'->'one'
+}
+")
+```
+  **Now *HEAD* points to the *testing* branch.**    
+**Do another commit:**  
+```{r echo=FALSE}
+grViz("
+digraph {
+  graph [overlap = true, fontsize = 10]
+  node [shape = box, fontname = Helvetica, style = filled]
+  node[fillcolor = yellow] 
+  'one'; 'two'; 'three'; 'four' 
+  node[shape = oval, fillcolor = orange]
+  'HEAD'
+  node[fillcolor = green]
+  'testing'; 'master'
+  edge[color = grey]
+  'master'->'three' 'testing'->'four' 'HEAD'->'testing' 'four' -> 'three' 'three'->'two'          'two'->'one'
+}
+")
+```
+**Switch back to the *master* branch:**  
+```{r eval=FALSE, include=TRUE}
+$ git checkout master
+```
+```{r echo=FALSE}
+library(DiagrammeR)
+grViz("
+digraph {
+  graph [overlap = true, fontsize = 10]
+  node [shape = box, fontname = Helvetica, style = filled]
+  node[fillcolor = yellow] 
+  'one'; 'two'; 'three'; 'four' 
+  node[shape = oval, fillcolor = orange]
+  'HEAD'
+  node[fillcolor = green]
+  'testing'; 'master'
+  edge[color = grey]
+  'master'->'three' 'testing'->'four' 'HEAD'->'master' 'four'->'three' 'three'->'two'             'two'->'one'
+}
+")
+```
+**Make another change and commit:**  
+```{r echo=FALSE}
+grViz("
+digraph {
+  graph [overlap = true, fontsize = 10]
+  node [shape = box, fontname = Helvetica, style = filled]
+  node[fillcolor = yellow] 
+  'one'; 'two'; 'three'; 'four'; 'five'
+  node[shape = oval, fillcolor = orange]
+  'HEAD'
+  node[fillcolor = green]
+  'testing'; 'master'
+  edge[color = grey]
+  'master'->'five' 'testing'->'four' 'HEAD'->'master' 'five'-> 'three' 'four' -> 'three'          'three'->'two' 'two'->'one'
+}
+")
+```
+**When you are ready you can merge the 2 branches together.**  
+**Use the *merge* command to combine the *testing* branch with the *master* branch:**  
+
+```{r eval=FALSE, include=TRUE}
+$ git merge testing
+```
