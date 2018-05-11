@@ -6,6 +6,8 @@ slug: network-graphs
 categories: []
 tags: []
 ---
+**Using the D3 Javascript library and R's networkD3 package to create interactive network graphs.**  
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(networkD3)
 
@@ -19,6 +21,7 @@ networkData <- data.frame(src, target)
 # Plot
 simpleNetwork(networkData)
 ```
+
 ```{r echo=FALSE}
 library(networkD3)
 data(MisLinks)
