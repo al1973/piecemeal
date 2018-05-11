@@ -6,7 +6,7 @@ slug: git
 categories: []
 tags: []
 ---
-**Git is a version control system used to track changes in computer files and to coordinate work among multiple users**  
+**Git is a version control system used to track changes in computer files and to coordinate work among multiple users.**  
 **After installing Git you can initialize a repository:**  
 ```{r eval=FALSE, include=TRUE}
 $ git init

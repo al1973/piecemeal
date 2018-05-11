@@ -17,7 +17,7 @@
       <pubDate>Wed, 09 May 2018 00:00:00 +0000</pubDate>
       
       <guid>/2018/05/09/git/</guid>
-      <description>Git is a version control system used to track changes in computer files and to coordinate work among multiple users
+      <description>Git is a version control system used to track changes in computer files and to coordinate work among multiple users.
 After installing Git you can initialize a repository:
 $ git init or alternatively, clone an existing repository:
 $ git clone https://github.com/al1973/piecemeal.git Add three new files and then commit them:
