@@ -2,48 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on piecemeal</title>
-    <link>/tags/</link>
+    <link>https://piecemeal.netlify.com/tags/</link>
     <description>Recent content in Tags on piecemeal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 27 Apr 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://piecemeal.netlify.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Dt Datatable</title>
-      <link>/tags/dt-datatable/</link>
+      <link>https://piecemeal.netlify.com/tags/dt-datatable/</link>
       <pubDate>Fri, 27 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/dt-datatable/</guid>
+      <guid>https://piecemeal.netlify.com/tags/dt-datatable/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Highcharter</title>
-      <link>/tags/highcharter/</link>
+      <link>https://piecemeal.netlify.com/tags/highcharter/</link>
       <pubDate>Fri, 27 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/highcharter/</guid>
+      <guid>https://piecemeal.netlify.com/tags/highcharter/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Port Wine Data</title>
-      <link>/tags/port-wine-data/</link>
+      <link>https://piecemeal.netlify.com/tags/port-wine-data/</link>
       <pubDate>Fri, 27 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/port-wine-data/</guid>
+      <guid>https://piecemeal.netlify.com/tags/port-wine-data/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R Markdown</title>
-      <link>/tags/r-markdown/</link>
+      <link>https://piecemeal.netlify.com/tags/r-markdown/</link>
       <pubDate>Fri, 27 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/r-markdown/</guid>
+      <guid>https://piecemeal.netlify.com/tags/r-markdown/</guid>
       <description></description>
     </item>
     

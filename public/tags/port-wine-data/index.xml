@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Port Wine Data on piecemeal</title>
-    <link>/tags/port-wine-data/</link>
+    <link>https://piecemeal.netlify.com/tags/port-wine-data/</link>
     <description>Recent content in Port Wine Data on piecemeal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 27 Apr 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/port-wine-data/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://piecemeal.netlify.com/tags/port-wine-data/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Port Wine Data</title>
-      <link>/2018/04/27/port-wine-data/</link>
+      <link>https://piecemeal.netlify.com/2018/04/27/port-wine-data/</link>
       <pubDate>Fri, 27 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/04/27/port-wine-data/</guid>
+      <guid>https://piecemeal.netlify.com/2018/04/27/port-wine-data/</guid>
       <description>The Douro is a Portuguese wine region located on the banks of the river of the same name. It is situated far upstream from the city of Porto.</description>
     </item>
     

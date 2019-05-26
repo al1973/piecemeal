@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on piecemeal</title>
-    <link>/post/</link>
+    <link>https://piecemeal.netlify.com/post/</link>
     <description>Recent content in Posts on piecemeal</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 09 May 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://piecemeal.netlify.com/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Git</title>
-      <link>/2018/05/09/git/</link>
+      <link>https://piecemeal.netlify.com/2018/05/09/git/</link>
       <pubDate>Wed, 09 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/05/09/git/</guid>
+      <guid>https://piecemeal.netlify.com/2018/05/09/git/</guid>
       <description>Git is a version control system used to track changes in computer files and to coordinate work among multiple users.
 After installing Git you can initialize a repository:
 $ git init or alternatively, clone an existing repository:
@@ -25,54 +25,20 @@ $ git add one two three $ git commit -m &amp;#39;First commit&amp;#39; You get a
     </item>
     
     <item>
-      <title>SQLite and R</title>
-      <link>/2018/05/04/sqlite-and-r/</link>
-      <pubDate>Fri, 04 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/2018/05/04/sqlite-and-r/</guid>
-      <description>First, create an in-memory RSQLite database:
-library(RSQLite) library(DBI) con &amp;lt;- dbConnect(SQLite(), &amp;quot;:memory:&amp;quot;) List its tables (0 at the moment):
-dbListTables(con) ## character(0) Insert a new table – use the mtcars dataset:
-dbWriteTable(con, &amp;quot;mtcars&amp;quot;, mtcars) Now, list the tables:
-dbListTables(con) ## [1] &amp;quot;mtcars&amp;quot; List the fields in the table:
-dbListFields(con, &amp;quot;mtcars&amp;quot;) ## [1] &amp;quot;mpg&amp;quot; &amp;quot;cyl&amp;quot; &amp;quot;disp&amp;quot; &amp;quot;hp&amp;quot; &amp;quot;drat&amp;quot; &amp;quot;wt&amp;quot; &amp;quot;qsec&amp;quot; &amp;quot;vs&amp;quot; &amp;quot;am&amp;quot; &amp;quot;gear&amp;quot; ## [11] &amp;quot;carb&amp;quot; View the data:
-dbReadTable(con, &amp;quot;mtcars&amp;quot;) ## mpg cyl disp hp drat wt qsec vs am gear carb ## 1 21.</description>
-    </item>
-    
-    <item>
-      <title>Network Graphs</title>
-      <link>/2018/05/01/network-graphs/</link>
-      <pubDate>Tue, 01 May 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/2018/05/01/network-graphs/</guid>
-      <description>   Using the D3 Javascript library and R’s networkD3 package to create interactive network graphs.
- {&#34;x&#34;:{&#34;links&#34;:{&#34;source&#34;:[0,0,0,0,1,1,2,2,3],&#34;target&#34;:[1,2,3,9,4,5,6,7,8],&#34;value&#34;:[1,1,1,1,1,1,1,1,1],&#34;colour&#34;:[&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;]},&#34;nodes&#34;:{&#34;name&#34;:[&#34;A&#34;,&#34;B&#34;,&#34;C&#34;,&#34;D&#34;,&#34;E&#34;,&#34;F&#34;,&#34;G&#34;,&#34;H&#34;,&#34;I&#34;,&#34;J&#34;],&#34;group&#34;:[1,1,1,1,1,1,1,1,1,1],&#34;nodesize&#34;:[8,8,8,8,8,8,8,8,8,8]},&#34;options&#34;:{&#34;NodeID&#34;:&#34;name&#34;,&#34;Group&#34;:&#34;group&#34;,&#34;colourScale&#34;:&#34;d3.scaleOrdinal([&#39;#3182bd&#39;])&#34;,&#34;fontSize&#34;:7,&#34;fontFamily&#34;:&#34;serif&#34;,&#34;clickTextSize&#34;:17.5,&#34;linkDistance&#34;:50,&#34;linkWidth&#34;:&#34;&#39;1.5px&#39;.toString()&#34;,&#34;charge&#34;:-30,&#34;opacity&#34;:0.6,&#34;zoom&#34;:false,&#34;legend&#34;:false,&#34;arrows&#34;:false,&#34;nodesize&#34;:true,&#34;radiusCalculation&#34;:&#34;d.nodesize&#34;,&#34;bounded&#34;:false,&#34;opacityNoHover&#34;:1,&#34;clickAction&#34;:null}},&#34;evals&#34;:[],&#34;jsHooks&#34;:[]}  {&#34;x&#34;:{&#34;links&#34;:{&#34;source&#34;:[1,2,3,3,4,5,6,7,8,9,11,11,11,11,12,13,14,15,17,18,18,19,19,19,20,20,20,20,21,21,21,21,21,22,22,22,22,22,22,23,23,23,23,23,23,23,23,23,24,24,25,25,25,26,26,26,26,27,27,27,27,27,28,28,29,29,29,30,31,31,31,31,32,33,33,34,34,35,35,35,36,36,36,36,37,37,37,37,37,38,38,38,38,38,38,39,40,41,41,42,42,42,43,43,43,44,44,45,47,48,48,48,48,49,49,50,50,51,51,51,52,52,53,54,54,54,55,55,55,55,55,55,55,55,55,55,56,56,57,57,57,58,58,58,58,58,59,59,59,59,60,60,60,61,61,61,61,61,61,62,62,62,62,62,62,62,62,63,63,63,63,63,63,63,63,64,64,64,64,64,64,64,64,64,64,65,65,65,65,65,65,65,65,65,65,66,66,66,66,66,66,66,66,66,67,68,68,68,68,68,68,69,69,69,69,69,69,69,70,70,70,70,70,70,70,70,71,71,71,71,71,71,71,71,72,72,72,73,74,74,75,75,75,75,75,75,75,76,76,76,76,76,76,76],&#34;target&#34;:[0,0,0,2,0,0,0,0,0,0,10,3,2,0,11,11,11,11,16,16,17,16,17,18,16,17,18,19,16,17,18,19,20,16,17,18,19,20,21,16,17,18,19,20,21,22,12,11,23,11,24,23,11,24,11,16,25,11,23,25,24,26,11,27,23,27,11,23,30,11,23,27,11,11,27,11,29,11,34,29,34,35,11,29,34,35,36,11,29,34,35,36,37,11,29,25,25,24,25,41,25,24,11,26,27,28,11,28,46,47,25,27,11,26,11,49,24,49,26,11,51,39,51,51,49,26,51,49,39,54,26,11,16,25,41,48,49,55,55,41,48,55,48,27,57,11,58,55,48,57,48,58,59,48,58,60,59,57,55,55,58,59,48,57,41,61,60,59,48,62,57,58,61,60,55,55,62,48,63,58,61,60,59,57,11,63,64,48,62,58,61,60,59,57,55,64,58,59,62,65,48,63,61,60,57,25,11,24,27,48,41,25,68,11,24,27,48,41,25,69,68,11,24,27,41,58,27,69,68,70,11,48,41,25,26,27,11,48,48,73,69,68,25,48,41,70,71,64,65,66,63,62,48,58],&#34;value&#34;:[1,8,10,6,1,1,1,1,2,1,1,3,3,5,1,1,1,1,4,4,4,4,4,4,3,3,3,4,3,3,3,3,5,3,3,3,3,4,4,3,3,3,3,4,4,4,2,9,2,7,13,1,12,4,31,1,1,17,5,5,1,1,8,1,1,1,2,1,2,3,2,1,1,2,1,3,2,3,3,2,2,2,2,1,2,2,2,2,1,2,2,2,2,2,1,1,1,2,3,2,2,1,3,1,1,3,1,2,1,2,1,1,1,3,2,1,1,9,2,2,1,1,1,2,1,1,6,12,1,1,21,19,1,2,5,4,1,1,1,1,1,7,7,6,1,4,15,5,6,2,1,4,2,2,6,2,5,1,1,9,17,13,7,2,1,6,3,5,5,6,2,4,3,2,1,5,12,5,4,10,6,2,9,1,1,5,7,3,5,5,5,2,5,1,2,3,3,1,2,2,1,1,1,1,3,5,1,1,1,1,1,6,6,1,1,2,1,1,4,4,4,1,1,1,1,1,1,2,2,2,1,1,1,1,2,1,1,2,2,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1],&#34;colour&#34;:[&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;,&#34;#666&#34;]},&#34;nodes&#34;:{&#34;name&#34;:[&#34;Myriel&#34;,&#34;Napoleon&#34;,&#34;Mlle.Baptistine&#34;,&#34;Mme.Magloire&#34;,&#34;CountessdeLo&#34;,&#34;Geborand&#34;,&#34;Champtercier&#34;,&#34;Cravatte&#34;,&#34;Count&#34;,&#34;OldMan&#34;,&#34;Labarre&#34;,&#34;Valjean&#34;,&#34;Marguerite&#34;,&#34;Mme.deR&#34;,&#34;Isabeau&#34;,&#34;Gervais&#34;,&#34;Tholomyes&#34;,&#34;Listolier&#34;,&#34;Fameuil&#34;,&#34;Blacheville&#34;,&#34;Favourite&#34;,&#34;Dahlia&#34;,&#34;Zephine&#34;,&#34;Fantine&#34;,&#34;Mme.Thenardier&#34;,&#34;Thenardier&#34;,&#34;Cosette&#34;,&#34;Javert&#34;,&#34;Fauchelevent&#34;,&#34;Bamatabois&#34;,&#34;Perpetue&#34;,&#34;Simplice&#34;,&#34;Scaufflaire&#34;,&#34;Woman1&#34;,&#34;Judge&#34;,&#34;Champmathieu&#34;,&#34;Brevet&#34;,&#34;Chenildieu&#34;,&#34;Cochepaille&#34;,&#34;Pontmercy&#34;,&#34;Boulatruelle&#34;,&#34;Eponine&#34;,&#34;Anzelma&#34;,&#34;Woman2&#34;,&#34;MotherInnocent&#34;,&#34;Gribier&#34;,&#34;Jondrette&#34;,&#34;Mme.Burgon&#34;,&#34;Gavroche&#34;,&#34;Gillenormand&#34;,&#34;Magnon&#34;,&#34;Mlle.Gillenormand&#34;,&#34;Mme.Pontmercy&#34;,&#34;Mlle.Vaubois&#34;,&#34;Lt.Gillenormand&#34;,&#34;Marius&#34;,&#34;BaronessT&#34;,&#34;Mabeuf&#34;,&#34;Enjolras&#34;,&#34;Combeferre&#34;,&#34;Prouvaire&#34;,&#34;Feuilly&#34;,&#34;Courfeyrac&#34;,&#34;Bahorel&#34;,&#34;Bossuet&#34;,&#34;Joly&#34;,&#34;Grantaire&#34;,&#34;MotherPlutarch&#34;,&#34;Gueulemer&#34;,&#34;Babet&#34;,&#34;Claquesous&#34;,&#34;Montparnasse&#34;,&#34;Toussaint&#34;,&#34;Child1&#34;,&#34;Child2&#34;,&#34;Brujon&#34;,&#34;Mme.Hucheloup&#34;],&#34;group&#34;:[1,1,1,1,1,1,1,1,1,1,2,2,3,2,2,2,3,3,3,3,3,3,3,3,4,4,5,4,0,2,3,2,2,2,2,2,2,2,2,4,6,4,4,5,0,0,7,7,8,5,5,5,5,5,5,8,5,8,8,8,8,8,8,8,8,8,8,9,4,4,4,4,5,10,10,4,8]},&#34;options&#34;:{&#34;NodeID&#34;:&#34;name&#34;,&#34;Group&#34;:&#34;group&#34;,&#34;colourScale&#34;:&#34;d3.scaleOrdinal(d3.schemeCategory20);&#34;,&#34;fontSize&#34;:7,&#34;fontFamily&#34;:&#34;serif&#34;,&#34;clickTextSize&#34;:17.5,&#34;linkDistance&#34;:50,&#34;linkWidth&#34;:&#34;function(d) { return Math.sqrt(d.value); }&#34;,&#34;charge&#34;:-30,&#34;opacity&#34;:0.8,&#34;zoom&#34;:false,&#34;legend&#34;:false,&#34;arrows&#34;:false,&#34;nodesize&#34;:false,&#34;radiusCalculation&#34;:&#34; Math.sqrt(d.nodesize)+6&#34;,&#34;bounded&#34;:false,&#34;opacityNoHover&#34;:0,&#34;clickAction&#34;:null}},&#34;evals&#34;:[],&#34;jsHooks&#34;:[]} </description>
-    </item>
-    
-    <item>
       <title>Port Wine Data</title>
-      <link>/2018/04/27/port-wine-data/</link>
+      <link>https://piecemeal.netlify.com/2018/04/27/port-wine-data/</link>
       <pubDate>Fri, 27 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/04/27/port-wine-data/</guid>
+      <guid>https://piecemeal.netlify.com/2018/04/27/port-wine-data/</guid>
       <description>The Douro is a Portuguese wine region located on the banks of the river of the same name. It is situated far upstream from the city of Porto.</description>
     </item>
     
     <item>
-      <title>Diagrams</title>
-      <link>/2018/04/18/diagrams/</link>
-      <pubDate>Wed, 18 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/2018/04/18/diagrams/</guid>
-      <description>Creating diagrams using the DiagammeR package  {&#34;x&#34;:{&#34;diagram&#34;:&#34;\ndigraph boxes_and_circles {\n\n # a \&#34;graph\&#34; statement\n graph [overlap = true, fontsize = 10]\n\n # several \&#34;node\&#34; statements\n node [shape = box,\n fontname = Helvetica]\n A; B; C; D; E; F\n\n node [shape = circle,\n fixedsize = true,\n width = 0.9] // sets as circles\n 1; 2; 3; 4; 5; 6; 7; 8\n\n # several \&#34;</description>
-    </item>
-    
-    <item>
       <title>Text Analysis - Moby Dick</title>
-      <link>/2018/02/20/text-analysis-moby-dick/</link>
+      <link>https://piecemeal.netlify.com/2018/02/20/text-analysis-moby-dick/</link>
       <pubDate>Tue, 20 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/02/20/text-analysis-moby-dick/</guid>
+      <guid>https://piecemeal.netlify.com/2018/02/20/text-analysis-moby-dick/</guid>
       <description>Moby Dick is Herman Melville’s epic novel of 1851. It tells the story of Captain Ahab’s pursuit of a great white sperm whale that has bitten off his leg. He risks his own life and that of his crew on the whaling ship Pequod. He is gripped by a narcissistic rage in his single-minded voyage of revenge. The tale is narrated by Ishmael, taking part in his first whaling expedition, and we encounter a multi-national crew including Queequeg, Starbuck, Stubb, Tashtego, Flask and Daggoo.</description>
     </item>
     

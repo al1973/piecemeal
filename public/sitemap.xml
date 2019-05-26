@@ -3,89 +3,74 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/2018/05/09/git/</loc>
+    <loc>https://piecemeal.netlify.com/2018/05/09/git/</loc>
     <lastmod>2018-05-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/2018/05/04/sqlite-and-r/</loc>
-    <lastmod>2018-05-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2018/05/01/network-graphs/</loc>
-    <lastmod>2018-05-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2018/04/27/port-wine-data/</loc>
+    <loc>https://piecemeal.netlify.com/2018/04/27/port-wine-data/</loc>
     <lastmod>2018-04-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/2018/04/18/diagrams/</loc>
-    <lastmod>2018-04-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2018/02/20/text-analysis-moby-dick/</loc>
+    <loc>https://piecemeal.netlify.com/2018/02/20/text-analysis-moby-dick/</loc>
     <lastmod>2018-02-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/about/</loc>
+    <loc>https://piecemeal.netlify.com/about/</loc>
     <lastmod>2016-05-05T21:48:51-07:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>https://piecemeal.netlify.com/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/dt-datatable/</loc>
+    <loc>https://piecemeal.netlify.com/tags/dt-datatable/</loc>
     <lastmod>2018-04-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/highcharter/</loc>
+    <loc>https://piecemeal.netlify.com/tags/highcharter/</loc>
     <lastmod>2018-04-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/port-wine-data/</loc>
+    <loc>https://piecemeal.netlify.com/tags/port-wine-data/</loc>
     <lastmod>2018-04-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/</loc>
+    <loc>https://piecemeal.netlify.com/post/</loc>
     <lastmod>2018-05-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/r/</loc>
+    <loc>https://piecemeal.netlify.com/categories/r/</loc>
     <lastmod>2018-04-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/r-markdown/</loc>
+    <loc>https://piecemeal.netlify.com/tags/r-markdown/</loc>
     <lastmod>2018-04-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>https://piecemeal.netlify.com/tags/</loc>
     <lastmod>2018-04-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>https://piecemeal.netlify.com/</loc>
     <lastmod>2018-05-09T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
